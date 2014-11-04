@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell","ruby"]);
         });
       </script>
   </head>
@@ -26,11 +26,9 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,208 +37,239 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://getrates-dev.avlr.sh/'>Sign Up for a Developer Key</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        
+          <h1 id='introduction'>Introduction</h1>
+<p>Avalara provides APIs to retreive tax rates based on location (TaxRates),
+ perform more complex tax calculations (Calculations),
+ and a means to record and manage documents for sales tax reporting (Documents).</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+          <h2 id='headers'>Headers</h2><pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: AvalaraApiKey meowmeowmeow"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: text/json"</span> <span class="se">\</span>
+  -H <span class="s2">"Accept: text/json"</span> <span class="se">\</span>
+  -D <span class="s2">"{ some_request_data }"</span>
 </pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</pre>
-<pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"api_endpoint_here"</span><span class="p">,</span> 
+    <span class="s2">"{ some_request_data }"</span><span class="p">,</span> 
+    <span class="ss">:authorization</span> <span class="o">=&gt;</span> <span class="s1">'AvalaraApiKey meowmeowmeow'</span><span class="p">,</span> 
+    <span class="ss">:content_type</span> <span class="o">=&gt;</span> <span class="s1">'text/json'</span><span class="p">,</span>
+    <span class="ss">:accept</span> <span class="o">=&gt;</span> <span class="s1">'text/json'</span>
 </pre>
 
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
 </blockquote>
+<h3 id='authentication'>Authentication</h3>
+<p>Avalara uses API keys to allow access to the API. 
+The API key is issued upon registering for an account. 
+You can get an API key at our <a href="http://getrates-dev.avlr.sh/">developer portal</a>.</p>
+<h4 id='via-authorization-header'>Via Authorization Header:</h4>
+<p>Avalara expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p><code class="prettyprint">Authorization: AvalaraApiKey meowmeowmeow</code></p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>where <code class="prettyprint">meowmeowmeow</code> is replaced with your personal API key.</p>
+<h4 id='alternate-method'>Alternate Method:</h4>
+<p>If you are using a free TaxRates account, you can pass the API key in the querystring as one of the parameters instead of 
+passing it in a header. i.e:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">https://tax-dev.avlr.sh/api/rates?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110&amp;apikey=meowmeowmeow</code></p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h1><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>where <code class="prettyprint">meowmeowmeow</code> is replaced with your personal API key.</p>
+<h3 id='content-type'>Content Type</h3>
+<p>The <code class="prettyprint">Content-Type</code> header is required for all POST requests. If this header is omitted, the request will result in an error.
+Valid accepted values are <code class="prettyprint">text\json</code> and <code class="prettyprint">text\xml</code></p>
+<h3 id='accept'>Accept</h3>
+<p>The <code class="prettyprint">Accept</code> header is optional. If no <code class="prettyprint">Accept</code> header is specified, the service will respond with <code class="prettyprint">text\json</code>.
+If used, valid values are <code class="prettyprint">text\json</code> and <code class="prettyprint">text\xml</code>.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+          <h1 id='taxrates'>TaxRates</h1>
+<blockquote>
+<p>The rate limiting means that you get 60 calls per minute and ~ calls per month.</p>
+</blockquote>
+<pre class="highlight shell">curl <span class="s2">"https://api.taxrates.avalara.com/address?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: AvalaraApiKey meowmeowmeow"</span>
 </pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre>
-<pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://api.taxrates.avalara.com/address?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110"</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">verify_mode</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_PEER</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">,</span> 
+    <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'AvalaraApiKey meowmeowmeow'</span><span class="p">)</span>
+<span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
 </pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h1>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h1><pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre>
-<pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre>
-<pre class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight json"><span class="p">{</span><span class="w"> 
+   </span><span class="s2">"totalRate"</span><span class="p">:</span><span class="mf">9.500000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"rates"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">3.00000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"SEATTLE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"City"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">6.500000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"State"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"workflowDuration"</span><span class="p">:</span><span class="mi">1535</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"overallDuration"</span><span class="p">:</span><span class="mi">6018</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"processingWorkflowId"</span><span class="p">:</span><span class="s2">"a4c86c6b5b0211e4bcab001c423a9e8c"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>The TaxRate API is a free, rate-limited resource that allows users to retrieve a tax rate for a street address or zip code.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET http://api.taxrates.avalara.com/address?&lt;address&gt;</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>The address can be identified by either: </p>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h1>
+<ul>
+<li><p><code class="prettyprint">country</code> and <code class="prettyprint">zipcode</code></p></li>
+<li><p><code class="prettyprint">country</code>, <code class="prettyprint">street</code>, and <code class="prettyprint">state</code></p></li>
+</ul>
+
+<p>Some parameters have synonyms provided for regional translation. Only one of these synonyms should be used at a time.
+ For example, a request could contain either <code class="prettyprint">city</code> or <code class="prettyprint">town</code>, but not both.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>street</td>
+<td>first line of the address</td>
+<td>&ldquo;1101 Alaskan Way&rdquo;</td>
+</tr>
+<tr>
+<td>city, municipality, town</td>
+<td>city of the address</td>
+<td>&ldquo;Seattle&rdquo;, &ldquo;Montreal&rdquo;, &ldquo;Bournemouth&rdquo;</td>
+</tr>
+<tr>
+<td>state, province</td>
+<td>state  or region of the address</td>
+<td>&ldquo;WA&rdquo;, &ldquo;QC&rdquo;, &ldquo;Washington&rdquo;, &ldquo;Quebec&rdquo;</td>
+</tr>
+<tr>
+<td>country</td>
+<td>country code in ISO 3166-1 alpha-3 format</td>
+<td>&ldquo;USA&rdquo;, &ldquo;CAN&rdquo;, &ldquo;GBR&rdquo;</td>
+</tr>
+<tr>
+<td>zipcode, postCode, postalCode</td>
+<td>zip code of the address</td>
+<td>&ldquo;98101&rdquo;, &ldquo;V8X 3X4&rdquo;, &ldquo;BH1 1AA&rdquo;</td>
+</tr>
+</tbody></table>
+<h3 id='response-attributes'>Response Attributes</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalRate</td>
+<td>double</td>
+<td>Contains the total tax rate for the location in question. Note that it is not a percentage; in the example above, the totalRate of 0.086 represents a tax rate of 8.6%.</td>
+</tr>
+<tr>
+<td>rates</td>
+<td>rate array</td>
+<td>Each object in the rates array represents a single jurisdiction&rsquo;s contribution to the totalRate.</td>
+</tr>
+<tr>
+<td>rate.rate</td>
+<td>double</td>
+<td>Note that a rate field may not always be present; in these cases, the contribution is 0.0%.</td>
+</tr>
+<tr>
+<td>rate.name</td>
+<td>string</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>rate.type</td>
+<td>string</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>workflowDuration</td>
+<td>integer</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>overallDuration</td>
+<td>integer</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>processingWorkflowId</td>
+<td>string</td>
+<td>TBD</td>
 </tr>
 </tbody></table>
 
           <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The TaxRates API uses the following error codes and messages:</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Meaning</th>
+<th>Message</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Unable to resolve one or more document addresses</td>
+</tr>
+<tr>
+<td></td>
+<td>Value cannot be null. Parameter name: address</td>
+</tr>
+<tr>
+<td></td>
+<td>The postal code you provided was not valid. Please check your postal code before re-trying.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>No authorization was provided. Please check the documentation to determine proper type for this API</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td></td>
+<td>The HTTP Authorization header you provided used an invalid scheme or the credentials were missing.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td></td>
+<td>The credentials you provided were not accepted.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td></td>
+<td>Your request provided two forms of authentication. Please check the documentation for the API to determine which form to use.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Rate limiting has been exceeded. Try again later.</td>
 </tr>
 </tbody></table>
 
@@ -249,7 +278,6 @@ Remember — a happy kitten is an authenticated kitten!
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
