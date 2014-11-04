@@ -1,20 +1,14 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+The TaxRates API uses the following error codes and messages:
 
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+Error Code | Message 
+---------- | ------- 
+400 | Unable to resolve one or more document addresses
+ | Value cannot be null. Parameter name: address
+ | The postal code you provided was not valid. Please check your postal code before re-trying.
+401 | No authorization was provided. Please check the documentation to determine proper type for this API
+ | The HTTP Authorization header you provided used an invalid scheme or the credentials were missing.
+ | The credentials you provided were not accepted.
+ | Your request provided two forms of authentication. Please check the documentation for the API to determine which form to use.
+429 | Rate limiting has been exceeded. Try again later.

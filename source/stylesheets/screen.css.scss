@@ -51,11 +51,11 @@ html, body {
 @mixin embossed-bg {
   @include background(
     linear-gradient(top,
-                    rgba(#000, 0.2),
-                    rgba(#000, 0) 8px),
+                    rgba($nav-gradient, 0.2),
+                    rgba($nav-gradient, 0) 8px),
     linear-gradient(bottom,
-                    rgba(#000, 0.2),
-                    rgba(#000, 0) 8px),
+                    rgba($nav-gradient, 0.2),
+                    rgba($nav-gradient, 0) 8px),
     linear-gradient(top,
                     rgba($nav-embossed-border-top, 1),
                     rgba($nav-embossed-border-top, 0) 1.5px),
@@ -347,7 +347,6 @@ html, body {
     padding: 0 $main-padding;
     @include box-sizing(border-box);
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -371,7 +370,7 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ddd;
     @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
+      linear-gradient(top, $h1-gradient-start, $h1-gradient-end)
     );
   }
 
@@ -468,7 +467,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,$codequote-bg-diff);
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
@@ -478,7 +477,7 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    text-shadow: 0 1px 0 lighten($aside-notice-bg, 0%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -486,12 +485,12 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      text-shadow: 0 1px 0 lighten($aside-warning-bg, 0%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      text-shadow: 0 1px 0 lighten($aside-success-bg, 0%);
     }
   }
 
@@ -519,7 +518,7 @@ html, body {
     border-radius: 4px;
     border: 1px solid #F7E633;
     text-shadow: 1px 1px 0 #666;
-    @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
+    @include background(linear-gradient(bottom right, $search-gradient-start 0%, $search-gradient-end 100%));
   }
 }
 

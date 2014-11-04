@@ -4,7 +4,6 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - php
 
 toc_footers:
   - <a href='http://getrates-dev.avlr.sh/'>Sign Up for a Developer Key</a>
@@ -12,11 +11,8 @@ toc_footers:
 
 includes:
   - introduction
-  - authentication
-  - rates
-  - tax
-  - certs
-  - returns
+  - headers
+  - taxrates
   - errors
 
 search: true
