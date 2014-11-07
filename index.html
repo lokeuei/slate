@@ -46,57 +46,31 @@
       <div class="content">
         
           <h1 id='introduction'>Introduction</h1>
-<p>Avalara provides APIs to retreive tax rates based on location (TaxRates),
- perform more complex tax calculations (Calculations),
- and a means to record and manage documents for sales tax reporting (Documents).</p>
+<p>The TaxRates API provides a free rates lookup tool to allow merchants to retreive tax rates by location. 
+This service is rate limited to 60 calls per minute, and ??? calls per month.</p>
 
-          <h2 id='headers'>Headers</h2><pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: AvalaraApiKey meowmeowmeow"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: text/json"</span> <span class="se">\</span>
-  -H <span class="s2">"Accept: text/json"</span> <span class="se">\</span>
-  -D <span class="s2">"{ some_request_data }"</span>
-</pre>
-<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"api_endpoint_here"</span><span class="p">,</span> 
-    <span class="s2">"{ some_request_data }"</span><span class="p">,</span> 
-    <span class="ss">:authorization</span> <span class="o">=&gt;</span> <span class="s1">'AvalaraApiKey meowmeowmeow'</span><span class="p">,</span> 
-    <span class="ss">:content_type</span> <span class="o">=&gt;</span> <span class="s1">'text/json'</span><span class="p">,</span>
-    <span class="ss">:accept</span> <span class="o">=&gt;</span> <span class="s1">'text/json'</span>
-</pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-<h3 id='authentication'>Authentication</h3>
+          <h2 id='authentication'>Authentication</h2>
 <p>Avalara uses API keys to allow access to the API. 
-The API key is issued upon registering for an account. 
-You can get an API key at our <a href="http://getrates-dev.avlr.sh/">developer portal</a>.</p>
-<h4 id='via-authorization-header'>Via Authorization Header:</h4>
+The API key is issued upon registering for an account. </p>
+
+<p><aside class='notice'> A TaxRates API Key is required to call this service. </aside></p>
+
+<p>You can get an API key at our <a href="http://getrates-dev.avlr.sh/">developer portal</a>.</p>
+<h3 id='via-authorization-header'>Via Authorization Header:</h3>
 <p>Avalara expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code class="prettyprint">Authorization: AvalaraApiKey meowmeowmeow</code></p>
 
 <p>where <code class="prettyprint">meowmeowmeow</code> is replaced with your personal API key.</p>
-<h4 id='alternate-method'>Alternate Method:</h4>
-<p>If you are using a free TaxRates account, you can pass the API key in the querystring as one of the parameters instead of 
+<h3 id='alternate-method'>Alternate Method:</h3>
+<p>You can pass the API key in the querystring as one of the parameters instead of 
 passing it in a header. i.e:</p>
 
 <p><code class="prettyprint">https://tax-dev.avlr.sh/api/rates?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110&amp;apikey=meowmeowmeow</code></p>
 
 <p>where <code class="prettyprint">meowmeowmeow</code> is replaced with your personal API key.</p>
-<h3 id='content-type'>Content Type</h3>
-<p>The <code class="prettyprint">Content-Type</code> header is required for all POST requests. If this header is omitted, the request will result in an error.
-Valid accepted values are <code class="prettyprint">text\json</code> and <code class="prettyprint">text\xml</code></p>
-<h3 id='accept'>Accept</h3>
-<p>The <code class="prettyprint">Accept</code> header is optional. If no <code class="prettyprint">Accept</code> header is specified, the service will respond with <code class="prettyprint">text\json</code>.
-If used, valid values are <code class="prettyprint">text\json</code> and <code class="prettyprint">text\xml</code>.</p>
 
-          <h1 id='taxrates'>TaxRates</h1>
-<blockquote>
-<p>The rate limiting means that you get 60 calls per minute and ~ calls per month.</p>
-</blockquote>
-<pre class="highlight shell">curl <span class="s2">"https://api.taxrates.avalara.com/address?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110"</span> <span class="se">\</span>
+          <h1 id='taxrates-api'>TaxRates API</h1><h2 id='rates-by-street-address'>Rates by Street Address</h2><pre class="highlight shell">curl <span class="s2">"https://api.taxrates.avalara.com/address?Line1=435+Ericksen+Ave+NE&amp;City=Bainbridge%20Island&amp;Region=WA&amp;PostalCode=98110"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: AvalaraApiKey meowmeowmeow"</span>
 </pre>
 <pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'json'</span>
@@ -126,56 +100,47 @@ If used, valid values are <code class="prettyprint">text\json</code> and <code c
          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"State"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"workflowDuration"</span><span class="p">:</span><span class="mi">1535</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"overallDuration"</span><span class="p">:</span><span class="mi">6018</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"processingWorkflowId"</span><span class="p">:</span><span class="s2">"a4c86c6b5b0211e4bcab001c423a9e8c"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-
-<p>The TaxRate API is a free, rate-limited resource that allows users to retrieve a tax rate for a street address or zip code.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">GET http://api.taxrates.avalara.com/address?&lt;address&gt;</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
-<p>The address can be identified by either: </p>
-
-<ul>
-<li><p><code class="prettyprint">country</code> and <code class="prettyprint">zipcode</code></p></li>
-<li><p><code class="prettyprint">country</code>, <code class="prettyprint">street</code>, and <code class="prettyprint">state</code></p></li>
-</ul>
-
-<p>Some parameters have synonyms provided for regional translation. Only one of these synonyms should be used at a time.
- For example, a request could contain either <code class="prettyprint">city</code> or <code class="prettyprint">town</code>, but not both.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>street</td>
+<td>Required</td>
 <td>first line of the address</td>
 <td>&ldquo;1101 Alaskan Way&rdquo;</td>
 </tr>
 <tr>
-<td>city, municipality, town</td>
+<td>city</td>
+<td>Optional</td>
 <td>city of the address</td>
 <td>&ldquo;Seattle&rdquo;, &ldquo;Montreal&rdquo;, &ldquo;Bournemouth&rdquo;</td>
 </tr>
 <tr>
-<td>state, province</td>
+<td>state</td>
+<td>Required</td>
 <td>state  or region of the address</td>
 <td>&ldquo;WA&rdquo;, &ldquo;QC&rdquo;, &ldquo;Washington&rdquo;, &ldquo;Quebec&rdquo;</td>
 </tr>
 <tr>
 <td>country</td>
+<td>Required</td>
 <td>country code in ISO 3166-1 alpha-3 format</td>
 <td>&ldquo;USA&rdquo;, &ldquo;CAN&rdquo;, &ldquo;GBR&rdquo;</td>
 </tr>
 <tr>
-<td>zipcode, postCode, postalCode</td>
+<td>postal</td>
+<td>Optional</td>
 <td>zip code of the address</td>
 <td>&ldquo;98101&rdquo;, &ldquo;V8X 3X4&rdquo;, &ldquo;BH1 1AA&rdquo;</td>
 </tr>
@@ -213,18 +178,95 @@ If used, valid values are <code class="prettyprint">text\json</code> and <code c
 <td>string</td>
 <td>TBD</td>
 </tr>
+</tbody></table>
+<h2 id='rates-by-zip-code'>Rates by Zip Code</h2><pre class="highlight shell">curl <span class="s2">"https://api.taxrates.avalara.com/address?country=USA&amp;postal=98101"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: AvalaraApiKey meowmeowmeow"</span> <span class="se">\</span>
+  -H <span class="s2">"Accept: text/json"</span>
+</pre>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://api.taxrates.avalara.com/address?country=USA&amp;postal=98101"</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">verify_mode</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_PEER</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">,</span> 
+    <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'AvalaraApiKey meowmeowmeow'</span><span class="p">)</span>
+<span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+</pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w"> 
+   </span><span class="s2">"totalRate"</span><span class="p">:</span><span class="mf">9.500000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"rates"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">3.00000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"SEATTLE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"City"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">6.500000</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"State"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET http://api.taxrates.avalara.com/postal?&lt;address&gt;</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
 <tr>
-<td>workflowDuration</td>
-<td>integer</td>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>country</td>
+<td>Required</td>
+<td>country code in ISO 3166-1 alpha-3 format</td>
+<td>&ldquo;USA&rdquo;, &ldquo;CAN&rdquo;, &ldquo;GBR&rdquo;</td>
+</tr>
+<tr>
+<td>postal</td>
+<td>Required</td>
+<td>zip code of the address</td>
+<td>&ldquo;98101&rdquo;, &ldquo;V8X 3X4&rdquo;, &ldquo;BH1 1AA&rdquo;</td>
+</tr>
+</tbody></table>
+<h3 id='response-attributes'>Response Attributes</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalRate</td>
+<td>double</td>
+<td>Contains the total tax rate for the location in question. Note that it is not a percentage; in the example above, the totalRate of 0.086 represents a tax rate of 8.6%.</td>
+</tr>
+<tr>
+<td>rates</td>
+<td>rate array</td>
+<td>Each object in the rates array represents a single jurisdiction&rsquo;s contribution to the totalRate.</td>
+</tr>
+<tr>
+<td>rate.rate</td>
+<td>double</td>
+<td>Note that a rate field may not always be present; in these cases, the contribution is 0.0%.</td>
+</tr>
+<tr>
+<td>rate.name</td>
+<td>string</td>
 <td>TBD</td>
 </tr>
 <tr>
-<td>overallDuration</td>
-<td>integer</td>
-<td>TBD</td>
-</tr>
-<tr>
-<td>processingWorkflowId</td>
+<td>rate.type</td>
 <td>string</td>
 <td>TBD</td>
 </tr>
