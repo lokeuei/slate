@@ -1,5 +1,4 @@
 # Introduction
 
-Avalara provides APIs to retreive tax rates based on location (TaxRates),
- perform more complex tax calculations (Calculations),
- and a means to record and manage documents for sales tax reporting (Documents).
+The TaxRates API provides a free rates lookup tool to allow merchants to retreive tax rates by location. 
+This service is rate limited to 60 calls per minute, and ??? calls per month.
