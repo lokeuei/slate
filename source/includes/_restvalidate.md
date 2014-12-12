@@ -2,6 +2,124 @@
 
 Normalizes a single US or Canadian address, providing a non-ambiguous address match.
 
+```curl
+curl "https://development.avalara.net
+	/1.0/address/validate?
+	Line1=118+N+Clark+St&
+	Line2=Suite+100&
+	Line3=ATTN+Accounts+Payable&
+	City=Chicago&
+	Region=IL&
+	PostalCode=60602&
+	Country=US"
+ --user 1234567890:A1B2C3D4E5F6G7H8
+```
+
+```csharp
+Address address = new Address();
+address.Line1 = "118 N Clark St";
+address.City = "Chicago";
+address.Region = "IL";
+address.Line2 = "Suite 100";
+address.Line3 = "ATTN Accounts Payable";
+address.Country = "US";
+address.PostalCode = "60602";
+
+// Convert input address data to query string
+string querystring = string.Empty;
+querystring += (address.Line1 == null) ? string.Empty : "Line1=" + address.Line1.Replace(" ", "+");
+querystring += (address.Line2 == null) ? string.Empty : "&Line2=" + address.Line2.Replace(" ", "+");
+querystring += (address.Line3 == null) ? string.Empty : "&Line3=" + address.Line3.Replace(" ", "+");
+querystring += (address.City == null) ? string.Empty : "&City=" + address.City.Replace(" ", "+");
+querystring += (address.Region == null) ? string.Empty : "&Region=" + address.Region.Replace(" ", "+");
+querystring += (address.PostalCode == null) ? string.Empty : "&PostalCode=" + address.PostalCode.Replace(" ", "+");
+querystring += (address.Country == null) ? string.Empty : "&Country=" + address.Country.Replace(" ", "+");
+
+// Call the service
+Uri webAddress = new Uri(svcURL + "address/validate.xml?" + querystring);
+HttpWebRequest request = WebRequest.Create(webAddress) as HttpWebRequest;
+request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNum + ":" + license)));
+request.Method = "GET";
+
+WebResponse response = request.GetResponse();
+```
+
+```java
+Address address = new Address();
+address.Line1 = "118 N Clark St";
+address.City = "Chicago";
+address.Region = "IL";
+address.Line2 = "Suite 100";
+address.Line3 = "ATTN Accounts Payable";
+address.Country = "US";
+address.PostalCode = "60602";
+
+//Create query/url
+String queryparams = address.toQuery();
+String addrval = serviceURL + "address/validate?"+ queryparams;
+URL url;
+
+HttpURLConnection conn;
+
+//Connect to specified URL 
+//with authorization header
+url = new URL(addrval);
+conn = (HttpURLConnection)url.openConnection();
+
+//Create auth content
+String encoded = "Basic " + new String(Base64.encodeBase64((accountNumber+":"+licenseKey).getBytes()));
+
+//Add authorization header
+conn.setRequestProperty ("Authorization", encoded);
+conn.disconnect();
+
+//Deserialization object
+ObjectMapper mapper = new ObjectMapper();
+ValidateResult vres = mapper.readValue(conn.getInputStream(),ValidateResult.class);
+```
+
+```php
+$address = new Address();
+$address->setLine1("118 N Clark St");
+$address->setCity("Chicago");
+$address->setRegion("IL");
+$address->setLine2("Suite 100");
+$address->setLine3("ATTN Accounts Payable");
+$address->setCountry("US");
+$address->setPostalCode("60602");
+$validateRequest = new ValidateRequest();
+$validateRequest->setAddress($address);
+$url =  $this->config['url'].'/1.0/address/validate?'. http_build_query($validateRequest->getAddress());
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($curl, CURLOPT_USERPWD, $accountNumber.":".$licenseKey);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+$result = curl_exec($curl);
+
+ValidateResult::parseResult($result);
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+"ResultCode": "Success",
+"Address": {
+"Line1": "ATTN Accounts Payable",
+"City": "Chicago",
+"Region": "IL",
+"PostalCode": "60602-1304",
+"Country": "US",
+"County": "Cook",
+"FipsCode": "1703100000",
+"CarrierRoute": "C012",
+"PostNet": "606021304990",
+"AddressType": "H",
+"Line2": "118 N Clark St Ste 100"}
+}
+```
+
 ### URL and Method
 
 URL: /1.0/address/validate GET
