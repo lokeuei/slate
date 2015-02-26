@@ -59,7 +59,11 @@
 <p>The Avalara REST API exposes the most commonly used available for interacting with the AvaTax service, allowing calculation of tax, modification of documents, and validation of addresses - including some functionality not exposed by our REST API.
 If you&rsquo;re unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href="http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest">here</a>.</p>
 
-          <h2 id='gettax'>GetTax</h2><pre class="highlight shell">curl <span class="s2">"https://development.avalara.net/1.0/tax/get"</span> --user 1234567890:A1B2C3D4E5F6G7H8 --header <span class="s2">"Content-Type: text/json"</span> --data @/Docs/getTaxRequest.json
+          <h2 id='gettax'>GetTax</h2><pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="se">\</span>
+--header <span class="s2">"Content-Type: text/json"</span> <span class="se">\</span>
+--data @/Docs/getTaxRequest.json <span class="se">\</span>
+<span class="s2">"https://development.avalara.net/1.0/tax/get"</span> 
+
 <span class="o">{</span>
 <span class="s2">"CustomerCode"</span>: <span class="s2">"ABC4335"</span>,
 <span class="s2">"DocDate"</span>: <span class="s2">"2014-01-01"</span>,
@@ -1025,7 +1029,10 @@ This is for informational purposes. The TotalTax will still be used for reportin
 
 <p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
 <h4 id='taxline'>TaxLine</h4><h4 id='taxdetail'>TaxDetail</h4><h4 id='taxaddress'>TaxAddress</h4>
-          <h2 id='canceltax'>CancelTax</h2><pre class="highlight shell">curl <span class="s2">"https://development.avalara.net/1.0/tax/cancel"</span> --user 1234567890:A1B2C3D4E5F6G7H8 --header <span class="s2">"Content-Type: text/json"</span> --data @/Docs/cancelTaxRequest.json
+          <h2 id='canceltax'>CancelTax</h2><pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="se">\</span>
+--header <span class="s2">"Content-Type: text/json"</span> <span class="se">\</span>
+--data @/Docs/cancelTaxRequest.json <span class="se">\</span>
+<span class="s2">"https://development.avalara.net/1.0/tax/cancel"</span>
 
 <span class="o">{</span>
 <span class="s2">"CompanyCode"</span>:<span class="s2">"APITrialCompany"</span>,
@@ -1234,7 +1241,8 @@ This is for informational purposes. The TotalTax will still be used for reportin
           <h2 id='estimatetax'>EstimateTax</h2>
 <p>Retrieves tax rate details for the supplied geographic coordinates and sale amount.
 Since the REST API does not provide an explicit ping function, this method can also be used to test connectivity to the service.</p>
-<pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="s2">"https://development.avalara.net/1.0/tax/47.627935,-122.51702/get?saleamount=10"</span>
+<pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="se">\</span>
+<span class="s2">"https://development.avalara.net/1.0/tax/47.627935,-122.51702/get?saleamount=10"</span>
 </pre>
 <pre class="highlight java"><span class="c1">// Required Request Parameters</span>
 <span class="n">Double</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mf">47.627935</span><span class="o">;</span>
@@ -1440,7 +1448,8 @@ Since the REST API does not provide an explicit ping function, this method can a
 
           <h2 id='validate'>Validate</h2>
 <p>Normalizes a single US or Canadian address, providing a non-ambiguous address match.</p>
-<pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="s2">"https://development.avalara.net/1.0/address/validate?Line1=118+N+Clark+St&amp;Line2=Suite+100&amp;Line3=ATTN+Accounts+Payable&amp;City=Chicago&amp;Region=IL&amp;PostalCode=60602&amp;Country=US"</span>
+<pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="se">\</span>
+<span class="s2">"https://development.avalara.net/1.0/address/validate?Line1=118+N+Clark+St&amp;Line2=Suite+100&amp;Line3=ATTN+Accounts+Payable&amp;City=Chicago&amp;Region=IL&amp;PostalCode=60602&amp;Country=US"</span>
 </pre>
 <pre class="highlight csharp"><span class="n">Address</span> <span class="n">address</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Address</span><span class="p">();</span>
 <span class="n">address</span><span class="p">.</span><span class="n">Line1</span> <span class="p">=</span> <span class="s">"118 N Clark St"</span><span class="p">;</span>
@@ -1832,7 +1841,114 @@ This is set automatically by the .NET, PHP, and Java adapters.</p>
 <p>The NetBIOS name of the local computer. 
 This is set automatically by the .NET, PHP, and Java adapters.</p>
 
-          <h2 id='gettax'>GetTax</h2><pre class="highlight shell">TBD
+          <h2 id='gettax'>GetTax</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/GetTax</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @getTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:GetTax&gt;
+&lt;ns1:GetTaxRequest&gt;
+&lt;ns1:CompanyCode&gt;APITrialCompany&lt;/ns1:CompanyCode&gt;
+&lt;ns1:DocType&gt;SalesInvoice&lt;/ns1:DocType&gt;
+&lt;ns1:DocCode&gt;INV001&lt;/ns1:DocCode&gt;
+&lt;ns1:DocDate&gt;2014-01-01&lt;/ns1:DocDate&gt;
+&lt;ns1:CustomerCode&gt;ABC4335&lt;/ns1:CustomerCode&gt;
+&lt;ns1:Discount&gt;0&lt;/ns1:Discount&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;1&lt;/ns1:DestinationCode&gt;
+&lt;ns1:Addresses&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;0&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;45 Fremont Street&lt;/ns1:Line1&gt;
+&lt;ns1:Line2/&gt;
+&lt;ns1:City&gt;San Francisco&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;CA&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;94105-2204&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;1&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;118 N Clark St&lt;/ns1:Line1&gt;
+&lt;ns1:Line2&gt;ATTN Accounts Payable&lt;/ns1:Line2&gt;
+&lt;ns1:City&gt;Chicago&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;IL&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;60602-1304&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;2&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;100 Ravine Lane&lt;/ns1:Line1&gt;
+&lt;ns1:Line2/&gt;
+&lt;ns1:City&gt;Bainbridge Island&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;WA&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;98110&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;/ns1:Addresses&gt;
+&lt;ns1:Lines&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;1&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;1&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;N543&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;NT&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;1&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;10&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Red Size 7 Widget&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;2&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;2&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;T345&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;PC030147&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;3&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;150&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Size 10 Green Running Shoe&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;3&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;2&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;FREIGHT&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;FR&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;1&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;15&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Shipping Charge&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;/ns1:Lines&gt;
+&lt;ns1:DetailLevel&gt;Tax&lt;/ns1:DetailLevel&gt;
+&lt;ns1:HashCode&gt;0&lt;/ns1:HashCode&gt;
+&lt;ns1:Commit&gt;false&lt;/ns1:Commit&gt;
+&lt;ns1:ServiceMode&gt;Automatic&lt;/ns1:ServiceMode&gt;
+&lt;ns1:PaymentDate&gt;1900-01-01&lt;/ns1:PaymentDate&gt;
+&lt;ns1:ExchangeRate&gt;1&lt;/ns1:ExchangeRate&gt;
+&lt;ns1:ExchangeRateEffDate&gt;1900-01-01&lt;/ns1:ExchangeRateEffDate&gt;
+&lt;/ns1:GetTaxRequest&gt;
+&lt;/ns1:GetTax&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -3196,7 +3312,36 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='committax'>CommitTax</h2><pre class="highlight shell">TBD
+          <h2 id='committax'>CommitTax</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/CommitTax</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @commitTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:CommitTax&gt;
+&lt;ns1:CommitTaxRequest&gt;
+&lt;ns1:CompanyCode&gt;APITrialCompany&lt;/ns1:CompanyCode&gt;
+&lt;ns1:DocType&gt;SalesInvoice&lt;/ns1:DocType&gt;
+&lt;ns1:DocCode&gt;INV001&lt;/ns1:DocCode&gt;
+&lt;ns1:NewDocCode&gt;INV001-1&lt;/ns1:NewDocCode&gt;
+&lt;/ns1:CommitTaxRequest&gt;
+&lt;/ns1:CommitTax&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -3320,7 +3465,36 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='canceltax'>CancelTax</h2><pre class="highlight shell">TBD
+          <h2 id='canceltax'>CancelTax</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/CancelTax</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @cancelTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:CancelTax&gt;
+&lt;ns1:CancelTaxRequest&gt;
+&lt;ns1:CompanyCode&gt;APITrialCompany&lt;/ns1:CompanyCode&gt;
+&lt;ns1:DocType&gt;SalesInvoice&lt;/ns1:DocType&gt;
+&lt;ns1:DocCode&gt;INV001&lt;/ns1:DocCode&gt;
+&lt;ns1:CancelCode&gt;DocVoided&lt;/ns1:CancelCode&gt;
+&lt;/ns1:CancelTaxRequest&gt;
+&lt;/ns1:CancelTax&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -3460,7 +3634,119 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p>The unique numeric identifier (Document ID) assigned to the tax document in question by the AvaTax Service.</p>
 
-          <h2 id='adjusttax'>AdjustTax</h2><pre class="highlight shell">TBD
+          <h2 id='adjusttax'>AdjustTax</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/AdjustTax</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @adjustTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:AdjustTax&gt;
+&lt;ns1:AdjustTaxRequest&gt;
+&lt;ns1:AdjustmentReason&gt;4&lt;/ns1:AdjustmentReason&gt;
+&lt;ns1:AdjustmentDescription/&gt;
+&lt;ns1:GetTaxRequest&gt;
+&lt;ns1:CompanyCode&gt;APITrialCompany&lt;/ns1:CompanyCode&gt;
+&lt;ns1:DocType&gt;SalesInvoice&lt;/ns1:DocType&gt;
+&lt;ns1:DocCode&gt;INV001&lt;/ns1:DocCode&gt;
+&lt;ns1:DocDate&gt;2014-01-01&lt;/ns1:DocDate&gt;
+&lt;ns1:CustomerCode&gt;ABC4335&lt;/ns1:CustomerCode&gt;
+&lt;ns1:Discount&gt;0&lt;/ns1:Discount&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;1&lt;/ns1:DestinationCode&gt;
+&lt;ns1:Addresses&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;0&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;45 Fremont Street&lt;/ns1:Line1&gt;
+&lt;ns1:Line2/&gt;
+&lt;ns1:City&gt;San Francisco&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;CA&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;94105-2204&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;1&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;118 N Clark St&lt;/ns1:Line1&gt;
+&lt;ns1:Line2&gt;ATTN Accounts Payable&lt;/ns1:Line2&gt;
+&lt;ns1:City&gt;Chicago&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;IL&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;60602-1304&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;ns1:BaseAddress&gt;
+&lt;ns1:AddressCode&gt;2&lt;/ns1:AddressCode&gt;
+&lt;ns1:Line1&gt;100 Ravine Lane&lt;/ns1:Line1&gt;
+&lt;ns1:Line2/&gt;
+&lt;ns1:City&gt;Bainbridge Island&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;WA&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;98110&lt;/ns1:PostalCode&gt;
+&lt;ns1:Country&gt;US&lt;/ns1:Country&gt;
+&lt;ns1:TaxRegionId&gt;0&lt;/ns1:TaxRegionId&gt;
+&lt;/ns1:BaseAddress&gt;
+&lt;/ns1:Addresses&gt;
+&lt;ns1:Lines&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;1&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;1&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;N543&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;NT&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;1&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;10&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Red Size 7 Widget&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;2&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;2&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;T345&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;PC030147&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;3&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;150&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Size 10 Green Running Shoe&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;ns1:Line&gt;
+&lt;ns1:No&gt;3&lt;/ns1:No&gt;
+&lt;ns1:OriginCode&gt;0&lt;/ns1:OriginCode&gt;
+&lt;ns1:DestinationCode&gt;2&lt;/ns1:DestinationCode&gt;
+&lt;ns1:ItemCode&gt;FREIGHT&lt;/ns1:ItemCode&gt;
+&lt;ns1:TaxCode&gt;FR&lt;/ns1:TaxCode&gt;
+&lt;ns1:Qty&gt;1&lt;/ns1:Qty&gt;
+&lt;ns1:Amount&gt;15&lt;/ns1:Amount&gt;
+&lt;ns1:Discounted&gt;false&lt;/ns1:Discounted&gt;
+&lt;ns1:Description&gt;Shipping Charge&lt;/ns1:Description&gt;
+&lt;/ns1:Line&gt;
+&lt;/ns1:Lines&gt;
+&lt;ns1:DetailLevel&gt;Tax&lt;/ns1:DetailLevel&gt;
+&lt;ns1:HashCode&gt;0&lt;/ns1:HashCode&gt;
+&lt;ns1:Commit&gt;false&lt;/ns1:Commit&gt;
+&lt;ns1:ServiceMode&gt;Automatic&lt;/ns1:ServiceMode&gt;
+&lt;ns1:PaymentDate&gt;1900-01-01&lt;/ns1:PaymentDate&gt;
+&lt;ns1:ExchangeRate&gt;1&lt;/ns1:ExchangeRate&gt;
+&lt;ns1:ExchangeRateEffDate&gt;1900-01-01&lt;/ns1:ExchangeRateEffDate&gt;
+&lt;/ns1:GetTaxRequest&gt;
+&lt;/ns1:AdjustTaxRequest&gt;
+&lt;/ns1:AdjustTax&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
+
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -4234,7 +4520,36 @@ Transaction Adjusted for Testing<span class="nt">&lt;/AdjustmentDescription&gt;<
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='gettaxhistory'>GetTaxHistory</h2><pre class="highlight shell">TBD
+          <h2 id='gettaxhistory'>GetTaxHistory</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/GetTaxHistory</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @getTaxHistoryRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:GetTaxHistory&gt;
+&lt;ns1:GetTaxHistoryRequest&gt;
+&lt;ns1:CompanyCode&gt;APITrialCompany&lt;/ns1:CompanyCode&gt;
+&lt;ns1:DocType&gt;SalesInvoice&lt;/ns1:DocType&gt;
+&lt;ns1:DocCode&gt;INV001&lt;/ns1:DocCode&gt;
+&lt;ns1:DetailLevel&gt;Tax&lt;/ns1:DetailLevel&gt;
+&lt;/ns1:GetTaxHistoryRequest&gt;
+&lt;/ns1:GetTaxHistory&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -4725,7 +5040,31 @@ Transaction Adjusted for Testing<span class="nt">&lt;/AdjustmentDescription&gt;<
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='isauthorized'>IsAuthorized</h2><pre class="highlight shell">TBD
+          <h2 id='isauthorized'>IsAuthorized</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/IsAuthorized</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @isAuthorizedRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:IsAuthorized&gt;
+&lt;ns1:Operations&gt;Ping, IsAuthorized, GetTax,PostTax, GetTaxHistory, CommitTax,CancelTax, AdjustTax&lt;/ns1:Operations&gt;
+&lt;/ns1:IsAuthorized&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
 
@@ -4809,7 +5148,31 @@ Transaction Adjusted for Testing<span class="nt">&lt;/AdjustmentDescription&gt;<
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='ping'>Ping</h2><pre class="highlight shell">TBD
+          <h2 id='ping'>Ping</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/Ping</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @pingRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:Ping&gt;
+&lt;ns1:Message/&gt;
+&lt;/ns1:Ping&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 
 </pre>
 <pre class="highlight csharp"><span class="n">TaxSvc</span> <span class="n">taxSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TaxSvc</span><span class="p">();</span>
@@ -4888,7 +5251,43 @@ Transaction Adjusted for Testing<span class="nt">&lt;/AdjustmentDescription&gt;<
 
 <p>The unique transaction ID assigned by AvaTax to this request/response set. This value need only be retained for troubleshooting.</p>
 
-          <h2 id='validateaddress'>ValidateAddress</h2><pre class="highlight shell">TBD
+          <h2 id='validateaddress'>ValidateAddress</h2><pre class="highlight shell">curl -X POST --header <span class="s2">"Content-Type: text/xml"</span> <span class="se">\</span>
+--header <span class="s2">"SOAPAction: </span><span class="se">\"</span><span class="s2">http://avatax.avalara.com/services/Validate</span><span class="se">\"</span><span class="s2">"</span> <span class="se">\</span>
+--data-binary @validateRequest.xml https://development.avalara.net/address/addresssvc.asmx
+
+&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span>?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/envelope/"</span> xmlns:ns1<span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span>&gt;
+&lt;SOAP-ENV:Header&gt;
+&lt;wsse:Security xmlns:wsse<span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"1"</span>&gt;
+&lt;wsse:UsernameToken&gt;
+&lt;wsse:Username&gt;1234567890&lt;/wsse:Username&gt;
+&lt;wsse:Password <span class="nv">Type</span><span class="o">=</span><span class="s2">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"</span>&gt;A1B2C3D4E5F6G7H8&lt;/wsse:Password&gt;
+&lt;/wsse:UsernameToken&gt;
+&lt;/wsse:Security&gt;
+&lt;Profile <span class="nv">xmlns</span><span class="o">=</span><span class="s2">"http://avatax.avalara.com/services"</span> SOAP-ENV:actor<span class="o">=</span><span class="s2">"http://schemas.xmlsoap.org/soap/actor/next"</span> SOAP-ENV:mustUnderstand<span class="o">=</span><span class="s2">"0"</span>&gt;
+&lt;Client&gt;AvaTaxSample&lt;/Client&gt;
+&lt;Adapter&gt;customAdapter&lt;/Adapter&gt;
+&lt;Name&gt;Development&lt;/Name&gt;
+&lt;/Profile&gt;
+&lt;/SOAP-ENV:Header&gt;
+&lt;SOAP-ENV:Body&gt;
+&lt;ns1:Validate&gt;
+&lt;ns1:ValidateRequest&gt;
+&lt;ns1:Address&gt;
+&lt;ns1:Line1&gt;118 N Clark St&lt;/ns1:Line1&gt;
+&lt;ns1:Line2&gt;Suite 100&lt;/ns1:Line2&gt;
+&lt;ns1:Line3&gt;ATTN Accounts Payable&lt;/ns1:Line3&gt;
+&lt;ns1:City&gt;Chicago&lt;/ns1:City&gt;
+&lt;ns1:Region&gt;IL&lt;/ns1:Region&gt;
+&lt;ns1:PostalCode&gt;60602&lt;/ns1:PostalCode&gt;
+&lt;/ns1:Address&gt;
+&lt;ns1:Coordinates&gt;true&lt;/ns1:Coordinates&gt;
+&lt;ns1:Taxability&gt;true&lt;/ns1:Taxability&gt;
+&lt;ns1:TextCase&gt;Upper&lt;/ns1:TextCase&gt;
+&lt;/ns1:ValidateRequest&gt;
+&lt;/ns1:Validate&gt;
+&lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
 </pre>
 <pre class="highlight csharp"><span class="n">AddressSvc</span> <span class="n">addressSvc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AddressSvc</span><span class="p">();</span>
 <span class="n">addressSvc</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Account</span><span class="p">=</span><span class="s">"1234567890"</span><span class="p">;</span>
