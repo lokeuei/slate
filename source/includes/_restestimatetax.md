@@ -9,17 +9,11 @@ curl --user 1234567890:A1B2C3D4E5F6G7H8 \
 ```
 
 ```java
-// Required Request Parameters
 Double latitude = 47.627935;
 Double longitude = -122.51702;
 Double saleAmount = 10.0;
-//Create query/url
 String queryparams = address.toQuery();
-String taxest = svcURL+ "/1.0/tax/" +
-	latitude.toString() + "," +
-	longitude.toString() + 
-	"/get?saleamount=" + 
-	saleAmount.toString();
+String taxest = svcURL+ "/1.0/tax/" + latitude.toString() + "," + longitude.toString() + "/get?saleamount=" + saleAmount.toString();
 URL url;
 
 HttpURLConnection conn;
@@ -38,32 +32,20 @@ conn.disconnect();
 
 //Deserialization object
 ObjectMapper mapper = new ObjectMapper();
-ValidateResult vres = mapper.readValue(
-	conn.getInputStream(),
-	ValidateResult.class);
+ValidateResult vres = mapper.readValue(conn.getInputStream(),ValidateResult.class);
 ```
 
 ```csharp
 decimal latitude = (decimal)47.627935;
 decimal longitude = (decimal)-122.51702;
 decimal saleAmount = (decimal)10;
-// Call the service
-Uri address = new Uri(
-	svcURL + "tax/" + latitude.ToString()+
-	"," + longitude.ToString() + 
-	"/get.xml?saleamount=" + saleAmount);
-HttpWebRequest request = 
-	WebRequest.Create(webAddress) 
-	as HttpWebRequest;
-request.Headers.Add(
-	HttpRequestHeader.Authorization, 
-	"Basic " + Convert.ToBase64String(
-		ASCIIEncoding.ASCII.GetBytes(
-			accountNum + ":" + license)));
+
+Uri address = new Uri(svcURL + "tax/" + latitude.ToString()+ "," + longitude.ToString() + "/get.xml?saleamount=" + saleAmount);
+HttpWebRequest request = WebRequest.Create(webAddress) as HttpWebRequest;
+request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNum + ":" + license)));
 request.Method = "GET";
 
-WebResponse response = 
-	request.GetResponse();
+WebResponse response = request.GetResponse();
 ```
 
 ```php
@@ -74,16 +56,10 @@ $saleAmount = 10;
 
 $estimateTaxRequest = new EstimateTaxRequest($latitude, $longitude, $saleAmount);
  
-$url =  $this->config['url'].'/1.0/tax/'.
-   $estimateTaxRequest->getLatitude().",".
-   $estimateTaxRequest->getLongitude().
-   '/get?saleamount='.
-   $estimateTaxRequest->getSaleAmount();
+$url =  $this->config['url'].'/1.0/tax/' . $estimateTaxRequest->getLatitude() . "," . $estimateTaxRequest->getLongitude() . '/get?saleamount=' . $estimateTaxRequest->getSaleAmount();
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($curl, CURLOPT_USERPWD, 
-	$this->config['account'].":".
-	$this->config['license']);
+curl_setopt($curl, CURLOPT_USERPWD, $this->config['account'] . ":" . $this->config['license']);
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER,	1);
 
