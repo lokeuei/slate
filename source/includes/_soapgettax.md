@@ -1,114 +1,115 @@
 ## GetTax
 
 ```shell
-curl -X POST --header "Content-Type: text/xml" \
---header "SOAPAction: \"http://avatax.avalara.com/services/GetTax\"" \
+curl -X POST --header "Content-Type: text/xml" 
+--header "SOAPAction: \"http://avatax.avalara.com/services/GetTax\"" 
 --data-binary @getTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
 
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://avatax.avalara.com/services">
-<SOAP-ENV:Header>
-<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
-<wsse:UsernameToken>
-<wsse:Username>1234567890</wsse:Username>
-<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">A1B2C3D4E5F6G7H8</wsse:Password>
-</wsse:UsernameToken>
-</wsse:Security>
-<Profile xmlns="http://avatax.avalara.com/services" SOAP-ENV:actor="http://schemas.xmlsoap.org/soap/actor/next" SOAP-ENV:mustUnderstand="0">
-<Client>AvaTaxSample</Client>
-<Adapter>customAdapter</Adapter>
-<Name>Development</Name>
-</Profile>
-</SOAP-ENV:Header>
-<SOAP-ENV:Body>
-<ns1:GetTax>
-<ns1:GetTaxRequest>
-<ns1:CompanyCode>APITrialCompany</ns1:CompanyCode>
-<ns1:DocType>SalesInvoice</ns1:DocType>
-<ns1:DocCode>INV001</ns1:DocCode>
-<ns1:DocDate>2014-01-01</ns1:DocDate>
-<ns1:CustomerCode>ABC4335</ns1:CustomerCode>
-<ns1:Discount>0</ns1:Discount>
-<ns1:OriginCode>0</ns1:OriginCode>
-<ns1:DestinationCode>1</ns1:DestinationCode>
-<ns1:Addresses>
-<ns1:BaseAddress>
-<ns1:AddressCode>0</ns1:AddressCode>
-<ns1:Line1>45 Fremont Street</ns1:Line1>
-<ns1:Line2/>
-<ns1:City>San Francisco</ns1:City>
-<ns1:Region>CA</ns1:Region>
-<ns1:PostalCode>94105-2204</ns1:PostalCode>
-<ns1:Country>US</ns1:Country>
-<ns1:TaxRegionId>0</ns1:TaxRegionId>
-</ns1:BaseAddress>
-<ns1:BaseAddress>
-<ns1:AddressCode>1</ns1:AddressCode>
-<ns1:Line1>118 N Clark St</ns1:Line1>
-<ns1:Line2>ATTN Accounts Payable</ns1:Line2>
-<ns1:City>Chicago</ns1:City>
-<ns1:Region>IL</ns1:Region>
-<ns1:PostalCode>60602-1304</ns1:PostalCode>
-<ns1:Country>US</ns1:Country>
-<ns1:TaxRegionId>0</ns1:TaxRegionId>
-</ns1:BaseAddress>
-<ns1:BaseAddress>
-<ns1:AddressCode>2</ns1:AddressCode>
-<ns1:Line1>100 Ravine Lane</ns1:Line1>
-<ns1:Line2/>
-<ns1:City>Bainbridge Island</ns1:City>
-<ns1:Region>WA</ns1:Region>
-<ns1:PostalCode>98110</ns1:PostalCode>
-<ns1:Country>US</ns1:Country>
-<ns1:TaxRegionId>0</ns1:TaxRegionId>
-</ns1:BaseAddress>
-</ns1:Addresses>
-<ns1:Lines>
-<ns1:Line>
-<ns1:No>1</ns1:No>
-<ns1:OriginCode>0</ns1:OriginCode>
-<ns1:DestinationCode>1</ns1:DestinationCode>
-<ns1:ItemCode>N543</ns1:ItemCode>
-<ns1:TaxCode>NT</ns1:TaxCode>
-<ns1:Qty>1</ns1:Qty>
-<ns1:Amount>10</ns1:Amount>
-<ns1:Discounted>false</ns1:Discounted>
-<ns1:Description>Red Size 7 Widget</ns1:Description>
-</ns1:Line>
-<ns1:Line>
-<ns1:No>2</ns1:No>
-<ns1:OriginCode>0</ns1:OriginCode>
-<ns1:DestinationCode>2</ns1:DestinationCode>
-<ns1:ItemCode>T345</ns1:ItemCode>
-<ns1:TaxCode>PC030147</ns1:TaxCode>
-<ns1:Qty>3</ns1:Qty>
-<ns1:Amount>150</ns1:Amount>
-<ns1:Discounted>false</ns1:Discounted>
-<ns1:Description>Size 10 Green Running Shoe</ns1:Description>
-</ns1:Line>
-<ns1:Line>
-<ns1:No>3</ns1:No>
-<ns1:OriginCode>0</ns1:OriginCode>
-<ns1:DestinationCode>2</ns1:DestinationCode>
-<ns1:ItemCode>FREIGHT</ns1:ItemCode>
-<ns1:TaxCode>FR</ns1:TaxCode>
-<ns1:Qty>1</ns1:Qty>
-<ns1:Amount>15</ns1:Amount>
-<ns1:Discounted>false</ns1:Discounted>
-<ns1:Description>Shipping Charge</ns1:Description>
-</ns1:Line>
-</ns1:Lines>
-<ns1:DetailLevel>Tax</ns1:DetailLevel>
-<ns1:HashCode>0</ns1:HashCode>
-<ns1:Commit>false</ns1:Commit>
-<ns1:ServiceMode>Automatic</ns1:ServiceMode>
-<ns1:PaymentDate>1900-01-01</ns1:PaymentDate>
-<ns1:ExchangeRate>1</ns1:ExchangeRate>
-<ns1:ExchangeRateEffDate>1900-01-01</ns1:ExchangeRateEffDate>
-</ns1:GetTaxRequest>
-</ns1:GetTax>
-</SOAP-ENV:Body>
+    <SOAP-ENV:Header>
+        <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+            <wsse:UsernameToken>
+                <wsse:Username>1234567890</wsse:Username>
+                <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">A1B2C3D4E5F6G7H8</wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+        <Profile xmlns="http://avatax.avalara.com/services" SOAP-ENV:actor="http://schemas.xmlsoap.org/soap/actor/next" SOAP-ENV:mustUnderstand="0">
+            <Client>AvaTaxSample</Client>
+            <Adapter>customAdapter</Adapter>
+            <Name>Development</Name>
+        </Profile>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <ns1:GetTax>
+            <ns1:GetTaxRequest>
+                <ns1:CompanyCode>APITrialCompany</ns1:CompanyCode>
+                <ns1:DocType>SalesInvoice</ns1:DocType>
+                <ns1:DocCode>INV001</ns1:DocCode>
+                <ns1:DocDate>2014-01-01</ns1:DocDate>
+                <ns1:CustomerCode>ABC4335</ns1:CustomerCode>
+                <ns1:Discount>0</ns1:Discount>
+                <ns1:OriginCode>0</ns1:OriginCode>
+                <ns1:DestinationCode>1</ns1:DestinationCode>
+                <ns1:Addresses>
+                    <ns1:BaseAddress>
+                        <ns1:AddressCode>0</ns1:AddressCode>
+                        <ns1:Line1>45 Fremont Street</ns1:Line1>
+                        <ns1:Line2/>
+                        <ns1:City>San Francisco</ns1:City>
+                        <ns1:Region>CA</ns1:Region>
+                        <ns1:PostalCode>94105-2204</ns1:PostalCode>
+                        <ns1:Country>US</ns1:Country>
+                        <ns1:TaxRegionId>0</ns1:TaxRegionId>
+                    </ns1:BaseAddress>
+                    <ns1:BaseAddress>
+                        <ns1:AddressCode>1</ns1:AddressCode>
+                        <ns1:Line1>118 N Clark St</ns1:Line1>
+                        <ns1:Line2>ATTN Accounts Payable</ns1:Line2>
+                        <ns1:City>Chicago</ns1:City>
+                        <ns1:Region>IL</ns1:Region>
+                        <ns1:PostalCode>60602-1304</ns1:PostalCode>
+                        <ns1:Country>US</ns1:Country>
+                        <ns1:TaxRegionId>0</ns1:TaxRegionId>
+                    </ns1:BaseAddress>
+                    <ns1:BaseAddress>
+                        <ns1:AddressCode>2</ns1:AddressCode>
+                        <ns1:Line1>100 Ravine Lane</ns1:Line1>
+                        <ns1:Line2/>
+                        <ns1:City>Bainbridge Island</ns1:City>
+                        <ns1:Region>WA</ns1:Region>
+                        <ns1:PostalCode>98110</ns1:PostalCode>
+                        <ns1:Country>US</ns1:Country>
+                        <ns1:TaxRegionId>0</ns1:TaxRegionId>
+                    </ns1:BaseAddress>
+                </ns1:Addresses>
+                <ns1:Lines>
+                    <ns1:Line>
+                        <ns1:No>1</ns1:No>
+                        <ns1:OriginCode>0</ns1:OriginCode>
+                        <ns1:DestinationCode>1</ns1:DestinationCode>
+                        <ns1:ItemCode>N543</ns1:ItemCode>
+                        <ns1:TaxCode>NT</ns1:TaxCode>
+                        <ns1:Qty>1</ns1:Qty>
+                        <ns1:Amount>10</ns1:Amount>
+                        <ns1:Discounted>false</ns1:Discounted>
+                        <ns1:Description>Red Size 7 Widget</ns1:Description>
+                    </ns1:Line>
+                    <ns1:Line>
+                        <ns1:No>2</ns1:No>
+                        <ns1:OriginCode>0</ns1:OriginCode>
+                        <ns1:DestinationCode>2</ns1:DestinationCode>
+                        <ns1:ItemCode>T345</ns1:ItemCode>
+                        <ns1:TaxCode>PC030147</ns1:TaxCode>
+                        <ns1:Qty>3</ns1:Qty>
+                        <ns1:Amount>150</ns1:Amount>
+                        <ns1:Discounted>false</ns1:Discounted>
+                        <ns1:Description>Size 10 Green Running Shoe</ns1:Description>
+                    </ns1:Line>
+                    <ns1:Line>
+                        <ns1:No>3</ns1:No>
+                        <ns1:OriginCode>0</ns1:OriginCode>
+                        <ns1:DestinationCode>2</ns1:DestinationCode>
+                        <ns1:ItemCode>FREIGHT</ns1:ItemCode>
+                        <ns1:TaxCode>FR</ns1:TaxCode>
+                        <ns1:Qty>1</ns1:Qty>
+                        <ns1:Amount>15</ns1:Amount>
+                        <ns1:Discounted>false</ns1:Discounted>
+                        <ns1:Description>Shipping Charge</ns1:Description>
+                    </ns1:Line>
+                </ns1:Lines>
+                <ns1:DetailLevel>Tax</ns1:DetailLevel>
+                <ns1:HashCode>0</ns1:HashCode>
+                <ns1:Commit>false</ns1:Commit>
+                <ns1:ServiceMode>Automatic</ns1:ServiceMode>
+                <ns1:PaymentDate>1900-01-01</ns1:PaymentDate>
+                <ns1:ExchangeRate>1</ns1:ExchangeRate>
+                <ns1:ExchangeRateEffDate>1900-01-01</ns1:ExchangeRateEffDate>
+            </ns1:GetTaxRequest>
+        </ns1:GetTax>
+    </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
+
 ```
 
 ```csharp
@@ -464,348 +465,348 @@ GetTaxResult getTaxResult = taxSvc.getTax(getTaxRequest);
 
 ```xml
 <GetTaxResult>
-<TransactionId>0</TransactionId>
-<ResultCode>Success</ResultCode>
-<DocId>48769271</DocId>
-<DocType>SalesInvoice</DocType>
-<DocCode>INV001</DocCode>
-<DocDate>2014-01-01</DocDate>
-<DocStatus>Saved</DocStatus>
-<Reconciled>false</Reconciled>
-<Timestamp>2014-03-25T23:20:34.55</Timestamp>
-<TotalAmount>175</TotalAmount>
-<TotalDiscount>0</TotalDiscount>
-<TotalExemption>10.94</TotalExemption>
-<TotalTaxable>164.06</TotalTaxable>
-<TotalTax>14.27</TotalTax>
-<TotalTaxCalculated>14.27</TotalTaxCalculated>
-<HashCode>0</HashCode>
-<TaxLines>
-<TaxLine>
-<No>01</No>
-<TaxCode>NT</TaxCode>
-<Taxability>false</Taxability>
-<BoundaryLevel>Address</BoundaryLevel>
-<Exemption>10</Exemption>
-<Discount>0</Discount>
-<Taxable>0</Taxable>
-<Rate>0.092500</Rate>
-<Tax>0</Tax>
-<TaxCalculated>0</TaxCalculated>
-<TaxIncluded>false</TaxIncluded>
-<TaxDetails>
-<TaxDetail>
-<Country>US</Country>
-<Region>IL</Region>
-<JurisType>State</JurisType>
-<JurisCode>17</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>0</Base>
-<Taxable>0</Taxable>
-<Rate>0.062500</Rate>
-<Tax>0</Tax>
-<TaxCalculated>0</TaxCalculated>
-<NonTaxable>10</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>ILLINOIS</JurisName>
-<TaxName>IL STATE TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
-</TaxDetail>
-<TaxDetail>
-<Country>US</Country>
-<Region>IL</Region>
-<JurisType>County</JurisType>
-<JurisCode>031</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>0</Base>
-<Taxable>0</Taxable>
-<Rate>0.007500</Rate>
-<Tax>0</Tax>
-<TaxCalculated>0</TaxCalculated>
-<NonTaxable>10</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>COOK</JurisName>
-<TaxName>IL COUNTY TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
-</TaxDetail>
-<TaxDetail>
-<Country>US</Country>
-<Region>IL</Region>
-<JurisType>City</JurisType>
-<JurisCode>14000</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>0</Base>
-<Taxable>0</Taxable>
-<Rate>0.012500</Rate>
-<Tax>0</Tax>
-<TaxCalculated>0</TaxCalculated>
-<NonTaxable>10</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>CHICAGO</JurisName>
-<TaxName>IL CITY TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
-</TaxDetail>
-<TaxDetail>
-<Country>US</Country>
-<Region>IL</Region>
-<JurisType>Special</JurisType>
-<JurisCode>AQOF</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>0</Base>
-<Taxable>0</Taxable>
-<Rate>0.010000</Rate>
-<Tax>0</Tax>
-<TaxCalculated>0</TaxCalculated>
-<NonTaxable>10</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>REGIONAL TRANSPORT. 
-AUTHORITY (RTA)</JurisName>
-<TaxName>IL SPECIAL TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
-</TaxDetail>
-</TaxDetails>
-<ExemptCertId>0</ExemptCertId>
-<TaxDate>2014-01-01</TaxDate>
-<ReportingDate>2014-01-01</ReportingDate>
-<AccountingMethod>Accrual</AccountingMethod>
-</TaxLine>
-<TaxLine>
-<No>02</No>
-<TaxCode>PC030147</TaxCode>
-<Taxability>true</Taxability>
-<BoundaryLevel>Zip5</BoundaryLevel>
-<Exemption>0</Exemption>
-<Discount>0</Discount>
-<Taxable>150</Taxable>
-<Rate>0.087000</Rate>
-<Tax>13.05</Tax>
-<TaxCalculated>13.05</TaxCalculated>
-<TaxIncluded>false</TaxIncluded>
-<TaxDetails>
-<TaxDetail>
-<Country>US</Country>
-<Region>WA</Region>
-<JurisType>State</JurisType>
-<JurisCode>53</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>150</Base>
-<Taxable>150</Taxable>
-<Rate>0.065000</Rate>
-<Tax>9.75</Tax>
-<TaxCalculated>9.75</TaxCalculated>
-<NonTaxable>0</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>WASHINGTON</JurisName>
-<TaxName>WA STATE TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo/>
-</TaxDetail>
-<TaxDetail>
-<Country>US</Country>
-<Region>WA</Region>
-<JurisType>City</JurisType>
-<JurisCode>03736</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>150</Base>
-<Taxable>150</Taxable>
-<Rate>0.022000</Rate>
-<Tax>3.3</Tax>
-<TaxCalculated>3.3</TaxCalculated>
-<NonTaxable>0</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>BAINBRIDGE ISLAND</JurisName>
-<TaxName>WA CITY TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>1804</StateAssignedNo>
-</TaxDetail>
-</TaxDetails>
-<ExemptCertId>0</ExemptCertId>
-<TaxDate>2014-01-01</TaxDate>
-<ReportingDate>2014-01-01</ReportingDate>
-<AccountingMethod>Accrual</AccountingMethod>
-</TaxLine>
-<TaxLine>
-<No>02-FR</No>
-<TaxCode>FR</TaxCode>
-<Taxability>true</Taxability>
-<BoundaryLevel>Zip5</BoundaryLevel>
-<Exemption>0.94</Exemption>
-<Discount>0</Discount>
-<Taxable>14.06</Taxable>
-<Rate>0.087000</Rate>
-<Tax>1.22</Tax>
-<TaxCalculated>1.22</TaxCalculated>
-<TaxIncluded>false</TaxIncluded>
-<TaxDetails>
-<TaxDetail>
-<Country>US</Country>
-<Region>WA</Region>
-<JurisType>State</JurisType>
-<JurisCode>53</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>14.06</Base>
-<Taxable>14.06</Taxable>
-<Rate>0.065000</Rate>
-<Tax>0.91</Tax>
-<TaxCalculated>0.91</TaxCalculated>
-<NonTaxable>0.94</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>WASHINGTON</JurisName>
-<TaxName>WA STATE TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo/>
-</TaxDetail>
-<TaxDetail>
-<Country>US</Country>
-<Region>WA</Region>
-<JurisType>City</JurisType>
-<JurisCode>03736</JurisCode>
-<TaxType>Sales</TaxType>
-<Base>14.06</Base>
-<Taxable>14.06</Taxable>
-<Rate>0.022000</Rate>
-<Tax>0.31</Tax>
-<TaxCalculated>0.31</TaxCalculated>
-<NonTaxable>0.94</NonTaxable>
-<Exemption>0</Exemption>
-<JurisName>BAINBRIDGE ISLAND</JurisName>
-<TaxName>WA CITY TAX</TaxName>
-<TaxAuthorityType>45</TaxAuthorityType>
-<TaxGroup/>
-<RateType>G</RateType>
-<StateAssignedNo>1804</StateAssignedNo>
-</TaxDetail>
-</TaxDetails>
-<ExemptCertId>0</ExemptCertId>
-<TaxDate>2014-01-01</TaxDate>
-<ReportingDate>2014-01-01</ReportingDate>
-<AccountingMethod>Accrual</AccountingMethod>
-</TaxLine>
-</TaxLines>
-<TaxAddresses>
-<TaxAddress>
-<Address>45 Fremont St</Address>
-<AddressCode>41744153</AddressCode>
-<BoundaryLevel>0</BoundaryLevel>
-<City>San Francisco</City>
-<Country>US</Country>
-<PostalCode>94105-2204</PostalCode>
-<Region>CA</Region>
-<TaxRegionId>2113460</TaxRegionId>
-<JurisCode/>
-<Latitude>37.791119</Latitude>
-<Longitude>-122.397366</Longitude>
-<GeocodeType>StreetLevel</GeocodeType>
-<ValidateStatus>NormalHit</ValidateStatus>
-<DistanceToBoundary>0</DistanceToBoundary>
-</TaxAddress>
-<TaxAddress>
-<Address>45 Fremont St</Address>
-<AddressCode>41744153</AddressCode>
-<BoundaryLevel>0</BoundaryLevel>
-<City>San Francisco</City>
-<Country>US</Country>
-<PostalCode>94105-2204</PostalCode>
-<Region>CA</Region>
-<TaxRegionId>2113460</TaxRegionId>
-<JurisCode/>
-<Latitude>37.791119</Latitude>
-<Longitude>-122.397366</Longitude>
-<GeocodeType>StreetLevel</GeocodeType>
-<ValidateStatus>NormalHit</ValidateStatus>
-<DistanceToBoundary>0</DistanceToBoundary>
-</TaxAddress>
-<TaxAddress>
-<Address>45 Fremont St</Address>
-<AddressCode>41744153</AddressCode>
-<BoundaryLevel>0</BoundaryLevel>
-<City>San Francisco</City>
-<Country>US</Country>
-<PostalCode>94105-2204</PostalCode>
-<Region>CA</Region>
-<TaxRegionId>2113460</TaxRegionId>
-<JurisCode>0607500000</JurisCode>
-<Latitude>37.791119</Latitude>
-<Longitude>-122.397366</Longitude>
-<GeocodeType>StreetLevel</GeocodeType>
-<ValidateStatus>NormalHit</ValidateStatus>
-<DistanceToBoundary>0</DistanceToBoundary>
-</TaxAddress>
-<TaxAddress>
-<Address>118 N Clark St Ste 100</Address>
-<AddressCode>66547563</AddressCode>
-<BoundaryLevel>0</BoundaryLevel>
-<City>Chicago</City>
-<Country>US</Country>
-<PostalCode>60602-1304</PostalCode>
-<Region>IL</Region>
-<TaxRegionId>2062953</TaxRegionId>
-<JurisCode>1703114000</JurisCode>
-<Latitude>41.884132</Latitude>
-<Longitude>-87.631048</Longitude>
-<GeocodeType>StreetLevel</GeocodeType>
-<ValidateStatus>NormalHit</ValidateStatus>
-<DistanceToBoundary>0</DistanceToBoundary>
-</TaxAddress>
-<TaxAddress>
-<Address/>
-<AddressCode>41850334</AddressCode>
-<BoundaryLevel>2</BoundaryLevel>
-<City/>
-<Country>US</Country>
-<PostalCode/>
-<Region>WA</Region>
-<TaxRegionId>2109716</TaxRegionId>
-<JurisCode/>
-<Latitude>47.627935</Latitude>
-<Longitude>-122.51702</Longitude>
-<GeocodeType/>
-<ValidateStatus>Not Validated</ValidateStatus>
-<DistanceToBoundary>2392</DistanceToBoundary>
-</TaxAddress>
-<TaxAddress>
-<Address/>
-<AddressCode>41850334</AddressCode>
-<BoundaryLevel>2</BoundaryLevel>
-<City/>
-<Country>US</Country>
-<PostalCode/>
-<Region>WA</Region>
-<TaxRegionId>2109716</TaxRegionId>
-<JurisCode>5303503736</JurisCode>
-<Latitude>47.627935</Latitude>
-<Longitude>-122.51702</Longitude>
-<GeocodeType/>
-<ValidateStatus>Not Validated</ValidateStatus>
-<DistanceToBoundary>2392</DistanceToBoundary>
-</TaxAddress>
-</TaxAddresses>
-<Locked>false</Locked>
-<AdjustmentReason>0</AdjustmentReason>
-<AdjustmentDescription/>
-<Version>1</Version>
-<TaxDate>2014-01-01</TaxDate>
-<TaxSummary/>
-<VolatileTaxRates>false</VolatileTaxRates>
+    <TransactionId>0</TransactionId>
+    <ResultCode>Success</ResultCode>
+    <DocId>48769271</DocId>
+    <DocType>SalesInvoice</DocType>
+    <DocCode>INV001</DocCode>
+    <DocDate>2014-01-01</DocDate>
+    <DocStatus>Saved</DocStatus>
+    <Reconciled>false</Reconciled>
+    <Timestamp>2014-03-25T23:20:34.55</Timestamp>
+    <TotalAmount>175</TotalAmount>
+    <TotalDiscount>0</TotalDiscount>
+    <TotalExemption>10.94</TotalExemption>
+    <TotalTaxable>164.06</TotalTaxable>
+    <TotalTax>14.27</TotalTax>
+    <TotalTaxCalculated>14.27</TotalTaxCalculated>
+    <HashCode>0</HashCode>
+    <TaxLines>
+        <TaxLine>
+            <No>01</No>
+            <TaxCode>NT</TaxCode>
+            <Taxability>false</Taxability>
+            <BoundaryLevel>Address</BoundaryLevel>
+            <Exemption>10</Exemption>
+            <Discount>0</Discount>
+            <Taxable>0</Taxable>
+            <Rate>0.092500</Rate>
+            <Tax>0</Tax>
+            <TaxCalculated>0</TaxCalculated>
+            <TaxIncluded>false</TaxIncluded>
+            <TaxDetails>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>IL</Region>
+                    <JurisType>State</JurisType>
+                    <JurisCode>17</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>0</Base>
+                    <Taxable>0</Taxable>
+                    <Rate>0.062500</Rate>
+                    <Tax>0</Tax>
+                    <TaxCalculated>0</TaxCalculated>
+                    <NonTaxable>10</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>ILLINOIS</JurisName>
+                    <TaxName>IL STATE TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
+                </TaxDetail>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>IL</Region>
+                    <JurisType>County</JurisType>
+                    <JurisCode>031</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>0</Base>
+                    <Taxable>0</Taxable>
+                    <Rate>0.007500</Rate>
+                    <Tax>0</Tax>
+                    <TaxCalculated>0</TaxCalculated>
+                    <NonTaxable>10</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>COOK</JurisName>
+                    <TaxName>IL COUNTY TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
+                </TaxDetail>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>IL</Region>
+                    <JurisType>City</JurisType>
+                    <JurisCode>14000</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>0</Base>
+                    <Taxable>0</Taxable>
+                    <Rate>0.012500</Rate>
+                    <Tax>0</Tax>
+                    <TaxCalculated>0</TaxCalculated>
+                    <NonTaxable>10</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>CHICAGO</JurisName>
+                    <TaxName>IL CITY TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
+                </TaxDetail>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>IL</Region>
+                    <JurisType>Special</JurisType>
+                    <JurisCode>AQOF</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>0</Base>
+                    <Taxable>0</Taxable>
+                    <Rate>0.010000</Rate>
+                    <Tax>0</Tax>
+                    <TaxCalculated>0</TaxCalculated>
+                    <NonTaxable>10</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>REGIONAL TRANSPORT. AUTHORITY (RTA)</JurisName>
+                    <TaxName>IL SPECIAL TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>016-0001-1 CHICAGO</StateAssignedNo>
+                </TaxDetail>
+            </TaxDetails>
+            <ExemptCertId>0</ExemptCertId>
+            <TaxDate>2014-01-01</TaxDate>
+            <ReportingDate>2014-01-01</ReportingDate>
+            <AccountingMethod>Accrual</AccountingMethod>
+        </TaxLine>
+        <TaxLine>
+            <No>02</No>
+            <TaxCode>PC030147</TaxCode>
+            <Taxability>true</Taxability>
+            <BoundaryLevel>Zip5</BoundaryLevel>
+            <Exemption>0</Exemption>
+            <Discount>0</Discount>
+            <Taxable>150</Taxable>
+            <Rate>0.087000</Rate>
+            <Tax>13.05</Tax>
+            <TaxCalculated>13.05</TaxCalculated>
+            <TaxIncluded>false</TaxIncluded>
+            <TaxDetails>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>WA</Region>
+                    <JurisType>State</JurisType>
+                    <JurisCode>53</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>150</Base>
+                    <Taxable>150</Taxable>
+                    <Rate>0.065000</Rate>
+                    <Tax>9.75</Tax>
+                    <TaxCalculated>9.75</TaxCalculated>
+                    <NonTaxable>0</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>WASHINGTON</JurisName>
+                    <TaxName>WA STATE TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo/>
+                </TaxDetail>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>WA</Region>
+                    <JurisType>City</JurisType>
+                    <JurisCode>03736</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>150</Base>
+                    <Taxable>150</Taxable>
+                    <Rate>0.022000</Rate>
+                    <Tax>3.3</Tax>
+                    <TaxCalculated>3.3</TaxCalculated>
+                    <NonTaxable>0</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>BAINBRIDGE ISLAND</JurisName>
+                    <TaxName>WA CITY TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>1804</StateAssignedNo>
+                </TaxDetail>
+            </TaxDetails>
+            <ExemptCertId>0</ExemptCertId>
+            <TaxDate>2014-01-01</TaxDate>
+            <ReportingDate>2014-01-01</ReportingDate>
+            <AccountingMethod>Accrual</AccountingMethod>
+        </TaxLine>
+        <TaxLine>
+            <No>02-FR</No>
+            <TaxCode>FR</TaxCode>
+            <Taxability>true</Taxability>
+            <BoundaryLevel>Zip5</BoundaryLevel>
+            <Exemption>0.94</Exemption>
+            <Discount>0</Discount>
+            <Taxable>14.06</Taxable>
+            <Rate>0.087000</Rate>
+            <Tax>1.22</Tax>
+            <TaxCalculated>1.22</TaxCalculated>
+            <TaxIncluded>false</TaxIncluded>
+            <TaxDetails>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>WA</Region>
+                    <JurisType>State</JurisType>
+                    <JurisCode>53</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>14.06</Base>
+                    <Taxable>14.06</Taxable>
+                    <Rate>0.065000</Rate>
+                    <Tax>0.91</Tax>
+                    <TaxCalculated>0.91</TaxCalculated>
+                    <NonTaxable>0.94</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>WASHINGTON</JurisName>
+                    <TaxName>WA STATE TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo/>
+                </TaxDetail>
+                <TaxDetail>
+                    <Country>US</Country>
+                    <Region>WA</Region>
+                    <JurisType>City</JurisType>
+                    <JurisCode>03736</JurisCode>
+                    <TaxType>Sales</TaxType>
+                    <Base>14.06</Base>
+                    <Taxable>14.06</Taxable>
+                    <Rate>0.022000</Rate>
+                    <Tax>0.31</Tax>
+                    <TaxCalculated>0.31</TaxCalculated>
+                    <NonTaxable>0.94</NonTaxable>
+                    <Exemption>0</Exemption>
+                    <JurisName>BAINBRIDGE ISLAND</JurisName>
+                    <TaxName>WA CITY TAX</TaxName>
+                    <TaxAuthorityType>45</TaxAuthorityType>
+                    <TaxGroup/>
+                    <RateType>G</RateType>
+                    <StateAssignedNo>1804</StateAssignedNo>
+                </TaxDetail>
+            </TaxDetails>
+            <ExemptCertId>0</ExemptCertId>
+            <TaxDate>2014-01-01</TaxDate>
+            <ReportingDate>2014-01-01</ReportingDate>
+            <AccountingMethod>Accrual</AccountingMethod>
+        </TaxLine>
+    </TaxLines>
+    <TaxAddresses>
+        <TaxAddress>
+            <Address>45 Fremont St</Address>
+            <AddressCode>41744153</AddressCode>
+            <BoundaryLevel>0</BoundaryLevel>
+            <City>San Francisco</City>
+            <Country>US</Country>
+            <PostalCode>94105-2204</PostalCode>
+            <Region>CA</Region>
+            <TaxRegionId>2113460</TaxRegionId>
+            <JurisCode/>
+            <Latitude>37.791119</Latitude>
+            <Longitude>-122.397366</Longitude>
+            <GeocodeType>StreetLevel</GeocodeType>
+            <ValidateStatus>NormalHit</ValidateStatus>
+            <DistanceToBoundary>0</DistanceToBoundary>
+        </TaxAddress>
+        <TaxAddress>
+            <Address>45 Fremont St</Address>
+            <AddressCode>41744153</AddressCode>
+            <BoundaryLevel>0</BoundaryLevel>
+            <City>San Francisco</City>
+            <Country>US</Country>
+            <PostalCode>94105-2204</PostalCode>
+            <Region>CA</Region>
+            <TaxRegionId>2113460</TaxRegionId>
+            <JurisCode/>
+            <Latitude>37.791119</Latitude>
+            <Longitude>-122.397366</Longitude>
+            <GeocodeType>StreetLevel</GeocodeType>
+            <ValidateStatus>NormalHit</ValidateStatus>
+            <DistanceToBoundary>0</DistanceToBoundary>
+        </TaxAddress>
+        <TaxAddress>
+            <Address>45 Fremont St</Address>
+            <AddressCode>41744153</AddressCode>
+            <BoundaryLevel>0</BoundaryLevel>
+            <City>San Francisco</City>
+            <Country>US</Country>
+            <PostalCode>94105-2204</PostalCode>
+            <Region>CA</Region>
+            <TaxRegionId>2113460</TaxRegionId>
+            <JurisCode>0607500000</JurisCode>
+            <Latitude>37.791119</Latitude>
+            <Longitude>-122.397366</Longitude>
+            <GeocodeType>StreetLevel</GeocodeType>
+            <ValidateStatus>NormalHit</ValidateStatus>
+            <DistanceToBoundary>0</DistanceToBoundary>
+        </TaxAddress>
+        <TaxAddress>
+            <Address>118 N Clark St Ste 100</Address>
+            <AddressCode>66547563</AddressCode>
+            <BoundaryLevel>0</BoundaryLevel>
+            <City>Chicago</City>
+            <Country>US</Country>
+            <PostalCode>60602-1304</PostalCode>
+            <Region>IL</Region>
+            <TaxRegionId>2062953</TaxRegionId>
+            <JurisCode>1703114000</JurisCode>
+            <Latitude>41.884132</Latitude>
+            <Longitude>-87.631048</Longitude>
+            <GeocodeType>StreetLevel</GeocodeType>
+            <ValidateStatus>NormalHit</ValidateStatus>
+            <DistanceToBoundary>0</DistanceToBoundary>
+        </TaxAddress>
+        <TaxAddress>
+            <Address/>
+            <AddressCode>41850334</AddressCode>
+            <BoundaryLevel>2</BoundaryLevel>
+            <City/>
+            <Country>US</Country>
+            <PostalCode/>
+            <Region>WA</Region>
+            <TaxRegionId>2109716</TaxRegionId>
+            <JurisCode/>
+            <Latitude>47.627935</Latitude>
+            <Longitude>-122.51702</Longitude>
+            <GeocodeType/>
+            <ValidateStatus>Not Validated</ValidateStatus>
+            <DistanceToBoundary>2392</DistanceToBoundary>
+        </TaxAddress>
+        <TaxAddress>
+            <Address/>
+            <AddressCode>41850334</AddressCode>
+            <BoundaryLevel>2</BoundaryLevel>
+            <City/>
+            <Country>US</Country>
+            <PostalCode/>
+            <Region>WA</Region>
+            <TaxRegionId>2109716</TaxRegionId>
+            <JurisCode>5303503736</JurisCode>
+            <Latitude>47.627935</Latitude>
+            <Longitude>-122.51702</Longitude>
+            <GeocodeType/>
+            <ValidateStatus>Not Validated</ValidateStatus>
+            <DistanceToBoundary>2392</DistanceToBoundary>
+        </TaxAddress>
+    </TaxAddresses>
+    <Locked>false</Locked>
+    <AdjustmentReason>0</AdjustmentReason>
+    <AdjustmentDescription/>
+    <Version>1</Version>
+    <TaxDate>2014-01-01</TaxDate>
+    <TaxSummary/>
+    <VolatileTaxRates>false</VolatileTaxRates>
 </GetTaxResult>
+
 ```
 
 Calculates taxes on a document such as a sales order, sales invoice, purchase order, purchase invoice, or credit memo.

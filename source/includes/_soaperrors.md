@@ -4,14 +4,14 @@
 ```xml
 <ResultCode>Error</ResultCode>
 <Messages>
-<Message Name="CompanyNotFoundError">
-<Summary>Company not found.  Verify the CompanyCode.</Summary>
-<Details>APITrialCompany</Details>
-<HelpLink>http://www.avalara.com</HelpLink>
-<RefersTo>CompanyCode</RefersTo>
-<Severity>Error</Severity>
-<Source>Avalara.AvaTax.Services.Tax</Source>
-</Message>
+    <Message Name="CompanyNotFoundError">
+        <Summary>Company not found.  Verify the CompanyCode.</Summary>
+        <Details>APITrialCompany</Details>
+        <HelpLink>http://www.avalara.com</HelpLink>
+        <RefersTo>CompanyCode</RefersTo>
+        <Severity>Error</Severity>
+        <Source>Avalara.AvaTax.Services.Tax</Source>
+    </Message>
 </Messages>
 ```
 
