@@ -2,17 +2,8 @@
 
 Normalizes a single US or Canadian address, providing a non-ambiguous address match.
 
-```curl
-curl "https://development.avalara.net
-	/1.0/address/validate?
-	Line1=118+N+Clark+St&
-	Line2=Suite+100&
-	Line3=ATTN+Accounts+Payable&
-	City=Chicago&
-	Region=IL&
-	PostalCode=60602&
-	Country=US"
- --user 1234567890:A1B2C3D4E5F6G7H8
+```shell
+curl --user 1234567890:A1B2C3D4E5F6G7H8 "https://development.avalara.net/1.0/address/validate?Line1=118+N+Clark+St&Line2=Suite+100&Line3=ATTN+Accounts+Payable&City=Chicago&Region=IL&PostalCode=60602&Country=US"
 ```
 
 ```csharp
@@ -79,6 +70,7 @@ ValidateResult vres = mapper.readValue(conn.getInputStream(),ValidateResult.clas
 ```
 
 ```php
+<?php
 $address = new Address();
 $address->setLine1("118 N Clark St");
 $address->setCity("Chicago");
@@ -99,6 +91,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 $result = curl_exec($curl);
 
 ValidateResult::parseResult($result);
+?>
 ```
 > The above command returns JSON structured like this:
 
@@ -136,11 +129,9 @@ Note that xml-encoded requests should use /1.0/address/validate.xml
 
 ### Headers
 
-**Request Method:** HTTP POST
-
 **Authorization:** header, *required*
 
-In the format "Basic[account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic [account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 

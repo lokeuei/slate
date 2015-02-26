@@ -1,5 +1,129 @@
 ## ValidateAddress
 
+```shell
+TBD
+```
+
+```csharp
+AddressSvc addressSvc = new AddressSvc();
+addressSvc.Configuration.Security.Account="1234567890";
+addressSvc.Configuration.Security.License="A1B2C3D4E5F6G7H8";
+addressSvc.Configuration.Url = "https://development.avalara.net";
+addressSvc.Configuration.ViaUrl = "https://development.avalara.net";
+addressSvc.Profile.Client = "AvaTaxSample";
+addressSvc.Profile.Name = "Development";
+
+ValidateRequest validateRequest = new ValidateRequest();
+Address address = new Address(); 
+
+address.Line1 = "118 N Clark St";
+address.Line2 = "Suite 100";
+address.Line3 = "ATTN Accounts Payable";
+address.City = "Chicago";
+address.Region = "IL";
+address.Country = "US";
+address.PostalCode = "60602"
+
+validateRequest.Address = address;
+validateRequest.Coordinates = true;
+validateRequest.Taxability = true;
+validateRequest.TextCase = TextCase.Upper;
+
+ValidateResult validateResult = addressSvc.Validate(validateRequest);
+```
+
+```php
+<?php
+require('../../AvaTax4PHP/AvaTax.php');
+
+new ATConfig('Development', array(
+    'url' => 'https://development.avalara.net',
+    'account' => '1234567890',
+    'license' => 'A1B2C3D4E5F6G7H8')
+);
+$addressSvc = new AddressServiceSoap('Development');
+
+$address = new Address();
+$address->setLine1("118 N Clark St");
+$address->setLine2("");
+$address->setLine3("");
+$address->setCity("Chicago");
+$address->setRegion("IL");
+$address->setPostalCode("60602");
+$textCase = TextCase::$Mixed;
+$coordinates = 1;
+
+$validateRequest = new ValidateRequest($address, $textCase, $coordinates);
+
+$validateResult = $addressSvc->Validate($validateRequest);
+
+?>
+
+```
+
+```java
+AddressSvcLocator AddressSvc = new AddressSvcLocator();
+String url = "https://development.avalara.net";
+AddressSvcSoap addressSvc = AddressSvc.getAddressSvcSoap(new URL(url));
+Profile profile = new Profile();
+profile.setClient("AvaTaxSample");
+addressSvc.setProfile(profile);
+Security security = new Security();
+security.setAccount("1234567890");
+security.setLicense("A1B2C3D4E5F6G7H8");
+addressSvc.setSecurity(security);
+
+ValidateRequest validateRequest = new ValidateRequest();
+Address address = new Address();
+
+address.setLine3("ATTN Accounts Payable");
+address.setLine1("118 N Clark St");
+address.setLine2("Suite 100");
+address.setCity("Chicago");
+address.setRegion("IL");
+address.setPostalCode("");
+validateRequest.setTextCase(TextCase.Default);
+validateRequest.setCoordinates(true);
+
+validateRequest.setAddress(address);
+
+ValidateResult validateResult = addressSvc.validate(validateRequest);
+
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<ValidateResult>
+<TransactionId>0</TransactionId>
+<ResultCode>Success</ResultCode>
+<ValidAddresses>
+<ValidAddress>
+<AddressCode/>
+<Line1>ATTN ACCOUNTS PAYABLE</Line1>
+<Line2>118 N CLARK ST STE 100</Line2>
+<Line3/>
+<City>CHICAGO</City>
+<Region>IL</Region>
+<PostalCode>60602-1304</PostalCode>
+<Country>US</Country>
+<TaxRegionId>2062953</TaxRegionId>
+<Latitude>41.883739</Latitude>
+<Longitude>-87.630989</Longitude>
+<Line4>CHICAGO IL 60602-1304</Line4>
+<County>COOK</County>
+<FipsCode>1703100000</FipsCode>
+<CarrierRoute>C012</CarrierRoute>
+<PostNet>606021304990</PostNet>
+<AddressType>H</AddressType>
+<ValidateStatus/>
+<GeocodeType/>
+</ValidAddress>
+</ValidAddresses>
+<Taxable>true</Taxable>
+</ValidateResult>
+```
+
 Normalizes a single US or Canadian address, providing a non-ambiguous address match.
 
 ### Validate Request

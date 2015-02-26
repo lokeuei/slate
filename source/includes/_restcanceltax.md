@@ -1,13 +1,7 @@
 ## CancelTax
 
-Voids or deletes and existing transaction record from the AvaTax system.
-
-```curl
-curl "https://development.avalara.net
-	/1.0/tax/cancel" 
---user 1234567890:A1B2C3D4E5F6G7H8
---header "Content-Type: text/json" 
---data @/Docs/cancelTaxRequest.json
+```shell
+curl "https://development.avalara.net/1.0/tax/cancel" --user 1234567890:A1B2C3D4E5F6G7H8 --header "Content-Type: text/json" --data @/Docs/cancelTaxRequest.json
 
 {
 "CompanyCode":"APITrialCompany",
@@ -99,10 +93,10 @@ wr.close ();
 
 conn.disconnect();
 CancelTaxResponse res = mapper.readValue(conn.getInputStream(), CancelTaxResponse.class);
-
 ```
 
 ```php
+<?php
 $cancelTaxRequest = new CancelTaxRequest();
 $cancelTaxRequest->setCompanyCode("APITrialCompany");
 $cancelTaxRequest->setDocType(DocumentType::$SalesInvoice);		
@@ -121,7 +115,9 @@ $curl_response = curl_exec($curl);
 curl_close($curl);
 
 CancelTaxResult::parseResult($curl_response);
+?>
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -132,6 +128,8 @@ CancelTaxResult::parseResult($curl_response);
 "DocId": "34067366"}
 }
 ```
+
+Voids or deletes and existing transaction record from the AvaTax system.
 
 ### URL and Method
 
@@ -149,11 +147,9 @@ Note that xml-encoded requests should use /1.0/tax/cancel.xml
 
 ### Headers
 
-**Request Method:** HTTP POST
-
 **Authorization:** header, *required*
 
-In the format "Basic[account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic [account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 

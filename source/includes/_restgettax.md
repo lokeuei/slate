@@ -1,14 +1,7 @@
 ## GetTax
 
-Calculates taxes on a document such as a sales order, sales invoice, purchase order, purchase invoice, or credit memo.
-
-```curl
-curl "https://development.avalara.net
-	/1.0/tax/get" 
---user 1234567890:A1B2C3D4E5F6G7H8 
---header "Content-Type: text/json" 
---data @/Docs/getTaxRequest.json
-
+```shell
+curl "https://development.avalara.net/1.0/tax/get" --user 1234567890:A1B2C3D4E5F6G7H8 --header "Content-Type: text/json" --data @/Docs/getTaxRequest.json
 {
 "CustomerCode": "ABC4335",
 "DocDate": "2014-01-01",
@@ -36,7 +29,8 @@ curl "https://development.avalara.net
 "AddressCode": "01",
 "Line1": "45 Fremont Street",
 "City": "San Francisco",
-"Region": "CA"	},
+"Region": "CA"	
+},
 {
 "AddressCode": "02",
 "Line1": "118 N Clark St",
@@ -45,11 +39,13 @@ curl "https://development.avalara.net
 "City": "Chicago",
 "Region": "IL",
 "Country": "US",
-"PostalCode": "60602"	},
+"PostalCode": "60602"	
+},
 {
 "AddressCode": "03",
 "Latitude": "47.627935",
-"Longitude": "-122.51702"	}
+"Longitude": "-122.51702"	
+}
 ],
 "Lines": [
 {
@@ -65,7 +61,8 @@ curl "https://development.avalara.net
 "Discounted": "true",
 "TaxIncluded": "true",
 "Ref1": "ref123",
-"Ref2": "ref456"	},
+"Ref2": "ref456"	
+},
 {
 "LineNo": "02",
 "ItemCode": "T345",
@@ -74,7 +71,8 @@ curl "https://development.avalara.net
 "OriginCode": "01",
 "DestinationCode": "03",
 "Description": "Size 10 Green Running Shoe",
-"TaxCode": "PC030147"	},
+"TaxCode": "PC030147"	
+},
 {
 "LineNo": "02-FR",
 "ItemCode": "FREIGHT",
@@ -83,15 +81,14 @@ curl "https://development.avalara.net
 "OriginCode": "01",
 "DestinationCode": "03",
 "Description": "Shipping Charge",
-"TaxCode": "FR"	}
+"TaxCode": "FR"	
+}
 ]
 }
-
 ```
 
 ```java
 GetTaxRequest getTaxRequest = new GetTaxRequest();
-
 // Document Level Elements
 getTaxRequest.CustomerCode = "ABC4335";
 java.util.Date docDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-01-01");
@@ -115,14 +112,12 @@ getTaxRequest.PurchaseOrderNo="PO123456";
 getTaxRequest.ReferenceCode="ref123456";
 getTaxRequest.PosLaneCode="09";
 getTaxRequest.CurrencyCode="USD";
-
 // Address Data
 Address address1 = new Address();
 address1.AddressCode = "01";
 address1.Line1 = "45 Fremont Street";
 address1.City = "San Francisco";
 address1.Region = "CA";
-
 Address address2 = new Address();
 address2.AddressCode = "02";
 address2.Line1 = "118 N Clark St";
@@ -132,14 +127,12 @@ address2.City = "Chicago";
 address2.Region = "IL";
 address2.Country = "US";
 address2.PostalCode = "60602";
-
 Address address3 = new Address();
 address3.AddressCode = "03";
 address3.Latitude = new BigDecimal(47.627935);
 address3.Longitude = new BigDecimal(-122.51702);
 Address[] addresses = { address1, address2, address3 };
 getTaxRequest.Addresses = addresses;
-
 // Line Data
 Line line1 = new Line();
 line1.LineNo = "01";
@@ -161,7 +154,6 @@ line1.TaxCode = "NT";
 // line1.TaxOverride.TaxAmount = "0";
 line1.Ref1 = "ref123";
 line1.Ref2 = "ref456";
-
 Line line2 = new Line();
 line2.LineNo = "02";
 line2.ItemCode = "T345";
@@ -171,7 +163,6 @@ line2.OriginCode = "01";
 line2.DestinationCode = "03";
 line2.Description = "Size 10 Green Running Shoe";
 line2.TaxCode = "PC030147";
-
 Line line3 = new Line();
 line3.LineNo = "02-FR";
 line3.ItemCode = "FREIGHT";
@@ -183,13 +174,10 @@ line3.Description = "Shipping Charge";
 line3.TaxCode = "FR";
 Line[] lines = { line1, line2, line3 };
 getTaxRequest.Lines = lines;
-
 //Create URL
 String taxget = baseURL+"/1.0/tax/get";
 URL url;
-
 HttpURLConnection conn;
-
 //Connect to URL with authorization header, request content.
 url = new URL(taxget);
 conn = (HttpURLConnection)url.openConnection();
@@ -198,33 +186,27 @@ conn.setDoOutput(true);
 conn.setDoInput(true);
 conn.setUseCaches(false);
 conn.setAllowUserInteraction(false);
-
 //Create auth content
 String encoded = "Basic " + new String(Base64.encodeBase64((accountNumber + ":" + licenseKey).getBytes())); 
-    
 //Add authorization header
 conn.setRequestProperty ("Authorization", encoded); 
 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 ObjectMapper mapper = new ObjectMapper();
 mapper.setSerializationInclusion(Include.NON_NULL);
 //Tells the serializer to only include those parameters that are not null
-
 String content = mapper.writeValueAsString(getTaxRequest);
-
 conn.setRequestProperty("Content-Length", Integer.toString(content.length()));
-
 DataOutputStream wr=new DataOutputStream(conn.getOutputStream());
 wr.writeBytes (content);
 wr.flush ();
 wr.close ();
-
 conn.disconnect();
 GetTaxResult res = mapper.readValue(conn.getErrorStream(), GetTaxResult.class);
 ```
 
 ```php
+<?php
 $getTaxRequest = new GetTaxRequest();
-
 // Document Level Elements
 $getTaxRequest->setCustomerCode("ABC4335");
 $getTaxRequest->setDocDate("2014-01-01");
@@ -249,15 +231,12 @@ $getTaxRequest->setPosLaneCode("09");
 $getTaxRequest->setCurrencyCode("USD");
 // Address Data
 $addresses = array();
-
 $address1 = new Address();
 $address1->setAddressCode("01");
 $address1->setLine1("45 Fremont Street");
 $address1->setCity("San Francisco");
 $address1->setRegion("CA");
-
 $addresses[] = $address1;
-
 $address2 = new Address();
 $address2->setAddressCode("02");
 $address2->setLine1("118 N Clark St");
@@ -267,19 +246,15 @@ $address2->setCity("Chicago");
 $address2->setRegion("IL");
 $address2->setCountry("US");
 $address2->setPostalCode("60602");
-
 $addresses[] = $address2;
-
 $address3 = new Address();
 $address3->setAddressCode("03");
 $address3->setLatitude(47.627935);
 $address3->setLongitude(-122.51702);
-
 $addresses[] = $address3;
 $getTaxRequest->setAddresses($addresses);
 // Line Data
 $lines = array();
-
 $line1 = new Line();
 $line1->setLineNo("01");
 $line1->setItemCode("N543");
@@ -300,9 +275,7 @@ $line1->setTaxCode("NT");
 // $line1->setTaxOverride($lineTaxOverride);
 $line1->setRef1("ref123");
 $line1->setRef2("ref456");
-
 $lines[] = $line1;
-
 $line2 = new Line();
 $line2->setLineNo("02");
 $line2->setItemCode("T345");
@@ -312,9 +285,7 @@ $line2->setOriginCode("01");
 $line2->setDestinationCode("03");
 $line2->setDescription("Size 10 Green Running Shoe");
 $line2->setTaxCode("PC030147");
-
 $lines[] = $line2;
-
 $line3 = new Line();
 $line3->setLineNo("02-FR");
 $line3->setItemCode("FREIGHT");
@@ -324,28 +295,23 @@ $line3->setOriginCode("01");
 $line3->setDestinationCode("03");
 $line3->setDescription("Shipping Charge");
 $line3->setTaxCode("FR");
-
 $lines[] = $line3;
 $getTaxRequest->setLines($lines);
 $url = $serviceURL."/1.0/tax/get";
-
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($curl, CURLOPT_USERPWD, $accountNumber.":".$licenseKey);
-
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($getTaxRequest)); 
 $curl_response = curl_exec($curl);
-
 curl_close($curl);
-
 GetTaxResult::parseResult($curl_response);
+?>
 ```
 
 ```csharp
 GetTaxRequest getTaxRequest = new GetTaxRequest();
-
 // Document Level Elements
 getTaxRequest.CustomerCode = "ABC4335";
 getTaxRequest.DocDate = "2014-01-01";
@@ -368,14 +334,12 @@ getTaxRequest.PurchaseOrderNo = "PO123456";
 getTaxRequest.ReferenceCode = "ref123456";
 getTaxRequest.PosLaneCode = "09";
 getTaxRequest.CurrencyCode = "USD";
-
 // Address Data
 Address address1 = new Address();
 address1.AddressCode = "01";
 address1.Line1 = "45 Fremont Street";
 address1.City = "San Francisco";
 address1.Region = "CA";
-
 Address address2 = new Address();
 address2.AddressCode = "02";
 address2.Line1 = "118 N Clark St";
@@ -385,14 +349,12 @@ address2.City = "Chicago";
 address2.Region = "IL";
 address2.Country = "US";
 address2.PostalCode = "60602";
-
 Address address3 = new Address();
 address3.AddressCode = "03";
 address3.Latitude = (decimal)47.627935;
 address3.Longitude = (decimal)-122.51702;
 Address[] addresses = { address1, address2, address3 };
 getTaxRequest.Addresses = addresses;
-
 // Line Data
 Line line1 = new Line();
 line1.LineNo = "01";
@@ -414,7 +376,6 @@ line1.TaxCode = "NT";
 // line1.TaxOverride.TaxAmount = "0";
 line1.Ref1 = "ref123";
 line1.Ref2 = "ref456";
-
 Line line2 = new Line();
 line2.LineNo = "02";
 line2.ItemCode = "T345";
@@ -424,7 +385,6 @@ line2.OriginCode = "01";
 line2.DestinationCode = "03";
 line2.Description = "Size 10 Green Running Shoe";
 line2.TaxCode = "PC030147";
-
 Line line3 = new Line();
 line3.LineNo = "02-FR";
 line3.ItemCode = "FREIGHT";
@@ -436,7 +396,6 @@ line3.Description = "Shipping Charge";
 line3.TaxCode = "FR";
 Line[] lines = { line1, line2, line3 };
 getTaxRequest.Lines = lines;
-
 //Convert the request to XML
 XmlSerializerNamespaces namesp = new XmlSerializerNamespaces();
 namesp.Add("", "");
@@ -447,11 +406,9 @@ StringBuilder sb = new StringBuilder();
 x.Serialize(XmlTextWriter.Create(sb, settings), getTaxRequest, namesp);
 XmlDocument doc = new XmlDocument();
 doc.LoadXml(sb.ToString());
-
 //Call the service
 Uri address = new Uri(serviceURL + "tax/get");
 HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
-
 //Add Authorization header
 request.Headers.Add(HttpRequestHeader.Authorization, 
 	"Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNumber + ":" + licenseKey)));
@@ -460,9 +417,7 @@ request.ContentType = "text/xml";
 request.ContentLength = sb.Length;
 Stream newStream = request.GetRequestStream();
 newStream.Write(ASCIIEncoding.ASCII.GetBytes(sb.ToString()), 0, sb.Length);
-
 WebResponse response = request.GetResponse();
-
 ```
 
 > The above command returns JSON structured like this:
@@ -500,8 +455,9 @@ WebResponse response = request.GetResponse();
 "Rate": "0.062500",
 "Tax": "0",
 "JurisName": "ILLINOIS",
-"TaxName": "IL STATE TAX"}
-,{
+"TaxName": "IL STATE TAX"
+},
+{
 "Country": "US",
 "Region": "IL",
 "JurisType": "County",
@@ -509,8 +465,9 @@ WebResponse response = request.GetResponse();
 "Rate": "0.007500",
 "Tax": "0",
 "JurisName": "COOK",
-"TaxName": "IL COUNTY TAX"}
-,{
+"TaxName": "IL COUNTY TAX"
+},
+{
 "Country": "US",
 "Region": "IL",
 "JurisType": "City",
@@ -518,8 +475,9 @@ WebResponse response = request.GetResponse();
 "Rate": "0.012500",
 "Tax": "0",
 "JurisName": "CHICAGO",
-"TaxName": "IL CITY TAX"}
-,{
+"TaxName": "IL CITY TAX"
+},
+{
 "Country": "US",
 "Region": "IL",
 "JurisType": "Special",
@@ -528,10 +486,11 @@ WebResponse response = request.GetResponse();
 "Tax": "0",
 "JurisName": "REGIONAL TRANSPORT. 
 	AUTHORITY (RTA)",
-"TaxName": "IL SPECIAL TAX"}
-]
+"TaxName": "IL SPECIAL TAX"
 }
-,{
+]
+},
+{
 "LineNo": "02",
 "TaxCode": "PC030147",
 "Taxability": "true",
@@ -551,8 +510,9 @@ WebResponse response = request.GetResponse();
 "Rate": "0.065000",
 "Tax": "0",
 "JurisName": "WASHINGTON",
-"TaxName": "WA STATE TAX"}
-,{
+"TaxName": "WA STATE TAX"
+},
+{
 "Country": "US",
 "Region": "WA",
 "JurisType": "City",
@@ -562,8 +522,8 @@ WebResponse response = request.GetResponse();
 "JurisName": "BAINBRIDGE ISLAND",
 "TaxName": "WA CITY TAX"}
 ]
-}
-,{
+},
+{
 "LineNo": "02-FR",
 "TaxCode": "FR",
 "Taxability": "true",
@@ -583,8 +543,9 @@ WebResponse response = request.GetResponse();
 "Rate": "0.065000",
 "Tax": "0",
 "JurisName": "WASHINGTON",
-"TaxName": "WA STATE TAX"}
-,{
+"TaxName": "WA STATE TAX"
+},
+{
 "Country": "US",
 "Region": "WA",
 "JurisType": "City",
@@ -592,11 +553,11 @@ WebResponse response = request.GetResponse();
 "Rate": "0.021000",
 "Tax": "0",
 "JurisName": "BAINBRIDGE ISLAND",
-"TaxName": "WA CITY TAX"}
-]
+"TaxName": "WA CITY TAX"
 }
 ]
-,
+}
+],
 "TaxAddresses": [
 {
 "Address": "45 Fremont St",
@@ -607,8 +568,9 @@ WebResponse response = request.GetResponse();
 "Region": "CA",
 "TaxRegionId": "2113460",
 "Latitude": "37.791119",
-"Longitude": "-122.397366"}
-,{
+"Longitude": "-122.397366"
+},
+{
 "Address": "45 Fremont St",
 "AddressCode": "01",
 "City": "San Francisco",
@@ -617,8 +579,9 @@ WebResponse response = request.GetResponse();
 "Region": "CA",
 "TaxRegionId": "2113460",
 "Latitude": "37.791119",
-"Longitude": "-122.397366"}
-,{
+"Longitude": "-122.397366"
+},
+{
 "Address": "45 Fremont St",
 "AddressCode": "01",
 "City": "San Francisco",
@@ -628,8 +591,9 @@ WebResponse response = request.GetResponse();
 "TaxRegionId": "2113460",
 "JurisCode": "0607500000",
 "Latitude": "37.791119",
-"Longitude": "-122.397366"}
-,{
+"Longitude": "-122.397366"
+},
+{
 "Address": "118 N Clark St Ste 100",
 "AddressCode": "02",
 "City": "Chicago",
@@ -639,27 +603,31 @@ WebResponse response = request.GetResponse();
 "TaxRegionId": "2062953",
 "JurisCode": "1703114000",
 "Latitude": "41.884132",
-"Longitude": "-87.631048"}
-,{
+"Longitude": "-87.631048"
+},
+{
 "AddressCode": "03",
 "Country": "US",
 "Region": "WA",
 "TaxRegionId": "2109716",
 "Latitude": "47.627935",
-"Longitude": "-122.51702"}
-,{
+"Longitude": "-122.51702"
+},
+{
 "AddressCode": "03",
 "Country": "US",
 "Region": "WA",
 "TaxRegionId": "2109716",
 "JurisCode": "5303503736",
 "Latitude": "47.627935",
-"Longitude": "-122.51702"}
-]
-,
-"TaxDate": "2013-07-01"}
-
+"Longitude": "-122.51702"
+}
+],
+"TaxDate": "2013-07-01"
+}
 ```
+
+Calculates taxes on a document such as a sales order, sales invoice, purchase order, purchase invoice, or credit memo.
 
 ### URL and Method
 
@@ -677,11 +645,9 @@ Note that xml-encoded requests should use /1.0/tax/get.xml
 
 ### Headers
 
-**Request Method:** HTTP POST
-
 **Authorization:** header, *required*
 
-In the format "Basic[account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic[ account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 

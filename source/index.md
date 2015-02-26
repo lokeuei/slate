@@ -2,14 +2,13 @@
 title: API Reference
 
 language_tabs:
-  - cURL
-  - .NET
-  - Java
-  - PHP
+  - shell
+  - csharp
+  - java
+  - php
 
 toc_footers:
   - <a href='http://developer.avalara.com/getting-started'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - introduction
@@ -18,6 +17,7 @@ includes:
   - restcanceltax
   - restestimatetax
   - restvalidate
+  - resterrors
   - soapheaders
   - soapgettax
   - soapposttax
@@ -28,7 +28,7 @@ includes:
   - soapisauthorized
   - soapping
   - soapvalidate
-  - errors
+  - soaperrors
 
 search: true
 ---

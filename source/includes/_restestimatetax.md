@@ -3,7 +3,7 @@
 Retrieves tax rate details for the supplied geographic coordinates and sale amount.
 Since the REST API does not provide an explicit ping function, this method can also be used to test connectivity to the service.
 
-```curl
+```shell
 curl --user 1234567890:A1B2C3D4E5F6G7H8 "https://development.avalara.net/1.0/tax/47.627935,-122.51702/get?saleamount=10"
 ```
 
@@ -66,6 +66,7 @@ WebResponse response =
 ```
 
 ```php
+<?php
 $latitude = 47.627935;
 $longitude = -122.51702;
 $saleAmount = 10;
@@ -87,7 +88,8 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER,	1);
 
 $curl_response = curl_exec($curl);
 
-EstimateTaxResult::parseResult($curl_response);      
+EstimateTaxResult::parseResult($curl_response);  
+?>    
 ```
 
 
@@ -137,11 +139,9 @@ Note that xml-encoded requests should use /1.0/tax/get.xml
 
 ### Headers
 
-**Request Method:** HTTP POST
-
 **Authorization:** header, *required*
 
-In the format "Basic[account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic [account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 

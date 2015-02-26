@@ -1,5 +1,94 @@
 ## PostTax
 
+```shell
+TBD
+```
+
+```csharp
+TaxSvc taxSvc = new TaxSvc();
+
+taxSvc.Configuration.Security.Account ="1234567890";
+taxSvc.Configuration.Security.License = "A1B2C3D4E5F6G7H8";
+taxSvc.Configuration.Url = "https://development.avalara.net";
+taxSvc.Configuration.ViaUrl = "https://development.avalara.net";
+taxSvc.Profile.Client = "AvaTaxSample";
+taxSvc.Profile.Name = "Development";
+
+PostTaxRequest postTaxRequest = new PostTaxRequest();
+
+postTaxRequest.CompanyCode = "APITrialCompany";
+postTaxRequest.DocType = DocumentType.SalesInvoice;
+postTaxRequest.DocCode = "INV001";
+postTaxRequest.Commit = false;
+postTaxRequest.DocDate = DateTime.Parse("2014-01-01");
+postTaxRequest.TotalTax = (decimal)14.27;
+postTaxRequest.TotalAmount = 175;
+postTaxRequest.NewDocCode = "INV001-1";
+
+PostTaxResult postTaxResult = taxSvc.PostTax(postTaxRequest);
+```
+
+```php
+<?php
+require('../../AvaTax4PHP/AvaTax.php');
+
+new ATConfig('Development', array(
+    'url' => 'https://development.avalara.net',
+    'account' => '1234567890',
+    'license' => 'A1B2C3D4E5F6G7H8')
+);
+
+$taxSvc = new TaxServiceSoap('Development');
+
+$postTaxRequest = new PostTaxRequest();
+$postTaxRequest->setCompanyCode("APITrialCompany");
+$postTaxRequest->setDocType("SalesInvoice");
+$postTaxRequest->setDocCode("INV001");
+$postTaxRequest->setDocDate("2014-01-01");
+$postTaxRequest->setTotalAmount(175.00);
+$postTaxRequest->setTotalTax(14.27);
+$postTaxRequest->setCommit(false);
+
+$postTaxResult = $taxSvc->postTax($postTaxRequest);
+?>
+```
+
+```java
+TaxSvcLocator taxSvcLocator = new TaxSvcLocator();
+String url = "https://development.avalara.net";
+TaxSvcSoap taxSvc = taxSvcLocator.getTaxSvcSoap(new URL(url));
+Profile profile = new Profile();
+profile.setClient("AvaTaxSample");
+taxSvc.setProfile(profile);
+Security security = new Security();
+security.setAccount("1234567890");
+security.setLicense("A1B2C3D4E5F6G7H8");
+taxSvc.setSecurity(security);
+
+PostTaxRequest postTaxRequest = new PostTaxRequest();
+Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+postTaxRequest.setDocCode("INV001");
+postTaxRequest.setCompanyCode("APITrialCompany");
+postTaxRequest.setDocType(DocumentType.SalesInvoice);
+Date docDate = (Date)formatter.parseObject("2014-01-01");
+postTaxRequest.setDocDate(docDate);
+postTaxRequest.setTotalAmount(new BigDecimal("175.00"));
+postTaxRequest.setTotalTax(new BigDecimal("14.27"));
+postTaxRequest.setCommit(false);
+
+PostTaxResult postTaxResult = taxSvc.postTax(postTaxRequest);
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<PostTaxResult>
+<TransactionId>0</TransactionId>
+<ResultCode>Success</ResultCode>
+<DocId>48769272</DocId>
+</PostTaxResult>
+```
+
 The PostTax method can be used to modify the state of a document saved to the AvaTax database via SalesInvoice, ReturnInvoice or PurchaseInvoice methods.
 
 **Note:** PostTax can be used to Commit a document or even change the Document Code (invoice number).
