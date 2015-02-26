@@ -74,6 +74,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="s2">"Commit"</span>: <span class="s2">"false"</span>,
 <span class="s2">"DocType"</span>: <span class="s2">"SalesInvoice"</span>,
 <span class="s2">"CustomerUsageType"</span>: <span class="s2">"G"</span>,
+<span class="s2">"BusinessIdentificationNo"</span>: <span class="s2">"234243"</span>,
 <span class="s2">"ExemptionNo"</span>: <span class="s2">"12345"</span>,
 <span class="s2">"Discount"</span>: <span class="s2">"50"</span>,
 <span class="s2">"TaxOverride"</span>: <span class="o">{</span>
@@ -162,6 +163,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="c1">// Situational Request Parameters</span>
 <span class="c1">// getTaxRequest.CustomerUsageType = "G";</span>
 <span class="c1">// getTaxRequest.ExemptionNo = "12345";</span>
+<span class="c1">// getTaxRequest.BusinessIdentificationNo = "234243";</span>
 <span class="c1">// getTaxRequest.Discount = new BigDecimal(50);</span>
 <span class="c1">// getTaxRequest.TaxOverride = new TaxOverrideDef();</span>
 <span class="c1">// getTaxRequest.TaxOverride.TaxOverrideType = "TaxDate";</span>
@@ -205,6 +207,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="n">line1</span><span class="o">.</span><span class="na">TaxCode</span> <span class="o">=</span> <span class="s">"NT"</span><span class="o">;</span>
 <span class="c1">// Situational Request Parameters</span>
 <span class="c1">// line1.CustomerUsageType = "L";</span>
+<span class="c1">// line1.BusinessIdentificationNo = "234243";</span>
 <span class="c1">// line1.Discounted = true;</span>
 <span class="c1">// line1.TaxIncluded = true;</span>
 <span class="c1">// line1.TaxOverride = new TaxOverrideDef();</span>
@@ -275,6 +278,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="nv">$getTaxRequest</span><span class="o">-&gt;</span><span class="na">setCommit</span><span class="p">(</span><span class="k">FALSE</span><span class="p">);</span>
 <span class="nv">$getTaxRequest</span><span class="o">-&gt;</span><span class="na">setDocType</span><span class="p">(</span><span class="nx">DocumentType</span><span class="o">::</span><span class="nv">$SalesInvoice</span><span class="p">);</span>
 <span class="c1">// $getTaxRequest-&gt;setCustomerUsageType("G");
+// $getTaxRequest-&gt;setBusinessIdentificationNo("234243");
 // $getTaxRequest-&gt;setExemptionNo("12345");
 // $getTaxRequest-&gt;setDiscount(50);
 // $taxOverride = new TaxOverride();
@@ -325,6 +329,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="c1">// $line1-&gt;setCustomerUsageType("L");
 // $line1-&gt;setDiscounted(TRUE);
 // $line1-&gt;setTaxIncluded(TRUE);
+// $line1-&gt;setBusinessIdentificationNo("234243");
 // $lineTaxOverride = new TaxOverride();
 // $lineTaxOverride.TaxOverrideType("TaxDate");
 // $lineTaxOverride.Reason("Adjustment for return");
@@ -380,6 +385,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <span class="c1">// Situational Request Parameters
 // getTaxRequest.CustomerUsageType = "G";
 // getTaxRequest.ExemptionNo = "12345";
+// getTaxRequest.BusinessIdentificationNo = "234243";
 // getTaxRequest.Discount = 50;
 // getTaxRequest.TaxOverride = new TaxOverrideDef();
 // getTaxRequest.TaxOverride.TaxOverrideType = "TaxDate";
@@ -425,6 +431,7 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 // line1.CustomerUsageType = "L";
 // line1.Discounted = true;
 // line1.TaxIncluded = true;
+// line1.BusinessIdentificationNo = "234243";
 // line1.TaxOverride = new TaxOverrideDef();
 // line1.TaxOverride.TaxOverrideType = "TaxDate";
 // line1.TaxOverride.Reason = "Adjustment for return";
@@ -480,206 +487,183 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><span class="p">{</span><span class="w">
-</span><span class="s2">"ResultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"DocCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INV001"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"DocDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-01-01"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-20T00:19:55.887"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalExemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"165"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalTaxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalTax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TotalTaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxLines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NT"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.092500"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.062500"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ILLINOIS"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL STATE TAX"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"County"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.007500"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COOK"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL COUNTY TAX"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.012500"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHICAGO"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL CITY TAX"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.010000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGIONAL TRANSPORT. 
-    AUTHORITY (RTA)"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL SPECIAL TAX"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PC030147"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zip5"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.086000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA STATE TAX"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.021000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAINBRIDGE ISLAND"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA CITY TAX"</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02-FR"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zip5"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.086000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA STATE TAX"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.021000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAINBRIDGE ISLAND"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA CITY TAX"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="s2">"TaxAddresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45 Fremont St"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94105-2204"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2113460"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.791119"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.397366"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45 Fremont St"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94105-2204"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2113460"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.791119"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.397366"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45 Fremont St"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94105-2204"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2113460"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0607500000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.791119"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.397366"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"118 N Clark St Ste 100"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicago"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60602-1304"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2062953"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1703114000"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.884132"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-87.631048"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2109716"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.627935"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.51702"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2109716"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5303503736"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.627935"</span><span class="p">,</span><span class="w">
-</span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.51702"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="s2">"TaxDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-01"</span><span class="w">
+    </span><span class="s2">"DocCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INV001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DocDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ResultCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TaxAddresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"118 N Clark St"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicago"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1703114000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.884132"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-87.631048"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60602"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2062953"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45 Fremont Street"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0607500000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.791119"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.397366"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2113460"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5303503736"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.627935"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.51702"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxRegionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2109716"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"TaxDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TaxLines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.092500"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ILLINOIS"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.062500"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL STATE TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"031"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COOK"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"County"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.007500"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL COUNTY TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHICAGO"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.012500"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL CITY TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AQOF"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGIONAL TRANSPORT. AUTHORITY (RTA)"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.010000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL SPECIAL TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zip5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.086000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PC030147"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA STATE TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03736"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAINBRIDGE ISLAND"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.021000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA CITY TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"BoundaryLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zip5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Exemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"LineNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02-FR"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.086000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"TaxDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WASHINGTON"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA STATE TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03736"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAINBRIDGE ISLAND"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JurisType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.021000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TaxName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA CITY TAX"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Taxability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Taxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"Timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T04:56:58.0496334Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"175"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalDiscount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalExemption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"165"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalTax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalTaxCalculated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TotalTaxable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
 
@@ -884,6 +868,10 @@ If you&rsquo;re unsure of which API to use, a full comparison of the differences
 
 <p>The client application customer or usage type. CustomerUsageType determines the exempt status of the transaction based on the exemption tax rules for the jurisdictions involved. Can also be referred to as Entity/Use Code.</p>
 
+<p><strong>BusinessIdentificationNo:</strong> string [25], <em>optional, unless the user needs VAT calculated</em></p>
+
+<p>The buyer&rsquo;s VAT id. Using this value will force VAT rules to be considered for the transaction. This may be set on the document or the line.</p>
+
 <p><strong>Description:</strong> string [255], <em>optional</em></p>
 
 <p>Item description. Required for customers using our filing service.</p>
@@ -1028,7 +1016,133 @@ This is for informational purposes. The TotalTax will still be used for reportin
 <p><strong>Messages:</strong> Message[]</p>
 
 <p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
-<h4 id='taxline'>TaxLine</h4><h4 id='taxdetail'>TaxDetail</h4><h4 id='taxaddress'>TaxAddress</h4>
+<h4 id='taxline'>TaxLine</h4>
+<p>Tax calculation details for item lines. Information returned is dependent on the DetailLevel passed in the request.</p>
+<h5 id='properties'>Properties</h5>
+<p><strong>LineNo:</strong> string [50]</p>
+
+<p>Line item identifier</p>
+
+<p><strong>TaxCode:</strong> string [25]</p>
+
+<p>The tax code used in calculating tax</p>
+
+<p><strong>Taxability:</strong> boolean</p>
+
+<p>Flag indicating item was taxable</p>
+
+<p><strong>Taxable:</strong> decimal</p>
+
+<p>The amount that is taxable</p>
+
+<p><strong>Rate:</strong> decimal</p>
+
+<p>Effective tax rate</p>
+
+<p><strong>Tax:</strong> decimal</p>
+
+<p>Tax amount</p>
+
+<p><strong>Discount:</strong> decimal</p>
+
+<p>Discount amount</p>
+
+<p><strong>TaxCalculated:</strong> decimal</p>
+
+<p>Amount of tax calculated</p>
+
+<p><strong>Exemption:</strong> decimal</p>
+
+<p>Exempt amount</p>
+
+<p><strong>BoundaryLevel:</strong> string [7]</p>
+
+<p>The boundary level used to calculate tax: determined by the provided addresses</p>
+
+<p><strong>TaxDetails:</strong> TaxDetail[]</p>
+
+<p>Collection of tax details</p>
+<h4 id='taxdetail'>TaxDetail</h4>
+<p>Tax details by jurisdiction. Information returned is dependent on the DetailLevel passed in the request.</p>
+<h5 id='properties'>Properties</h5>
+<p><strong>Country:</strong> string [2]</p>
+
+<p>Country of tax jurisdiction</p>
+
+<p><strong>JurisCode:</strong> string [200]</p>
+
+<p>State assigned code identifying the jurisdiction. Note that this is not necessarily a unique identifier of the jurisdiction.</p>
+
+<p><strong>JurisName:</strong> string [200]</p>
+
+<p>Name of tax jurisdiction</p>
+
+<p><strong>JurisType:</strong> string [9]</p>
+
+<p>Regional type of tax jurisdiction</p>
+
+<p><strong>Rate:</strong> decimal</p>
+
+<p>Effective tax rate for tax jurisdiction</p>
+
+<p><strong>Region:</strong> string [3]</p>
+
+<p>Region of tax jurisdiction</p>
+
+<p><strong>Tax:</strong> decimal</p>
+
+<p>Tax amount</p>
+
+<p><strong>Taxable:</strong> decimal</p>
+
+<p>Taxable amount on the line</p>
+
+<p><strong>TaxName:</strong> string [75]</p>
+
+<p>Tax name</p>
+<h4 id='taxaddress'>TaxAddress</h4>
+<p>TaxAddress represents canonical addresses used in tax calculation.</p>
+<h5 id='properties'>Properties</h5>
+<p><strong>Address:</strong> string [50]</p>
+
+<p>Canonical street address</p>
+
+<p><strong>AddressCode:</strong> string</p>
+
+<p>Reference code uniquely identifying this address instance. AddressCode will always correspond to an address code supplied to in the address collection provided in the request.</p>
+
+<p><strong>City:</strong> string [50]</p>
+
+<p>City name</p>
+
+<p><strong>Region:</strong> string [3]</p>
+
+<p>State or region name</p>
+
+<p><strong>Country:</strong> string</p>
+
+<p>Country code, as ISO 3166-1 (Alpha-2) country code (e.g. “US”)</p>
+
+<p><strong>PostalCode:</strong> string</p>
+
+<p>Postal code</p>
+
+<p><strong>Latitude:</strong> decimal</p>
+
+<p>Geographic latitude. Latitude is only defined if input address was a geographic point.</p>
+
+<p><strong>Longitude:</strong> decimal</p>
+
+<p>Geographic longitude. Longitude is only defined if input address was a geographic point.</p>
+
+<p><strong>TaxRegionId:</strong> string</p>
+
+<p>AvaTax tax region identifier</p>
+
+<p><strong>JurisCode:</strong> string</p>
+
+<p>Tax jurisdiction code</p>
+
           <h2 id='canceltax'>CancelTax</h2><pre class="highlight shell">curl --user 1234567890:A1B2C3D4E5F6G7H8 <span class="se">\</span>
 --header <span class="s2">"Content-Type: text/json"</span> <span class="se">\</span>
 --data @/Docs/cancelTaxRequest.json <span class="se">\</span>
