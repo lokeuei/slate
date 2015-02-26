@@ -16,6 +16,7 @@ curl --user 1234567890:A1B2C3D4E5F6G7H8 \
 "Commit": "false",
 "DocType": "SalesInvoice",
 "CustomerUsageType": "G",
+"BusinessIdentificationNo": "234243",
 "ExemptionNo": "12345",
 "Discount": "50",
 "TaxOverride": {
@@ -106,6 +107,7 @@ getTaxRequest.DocType = TaxSvc.DocType.SalesInvoice;
 // Situational Request Parameters
 // getTaxRequest.CustomerUsageType = "G";
 // getTaxRequest.ExemptionNo = "12345";
+// getTaxRequest.BusinessIdentificationNo = "234243";
 // getTaxRequest.Discount = new BigDecimal(50);
 // getTaxRequest.TaxOverride = new TaxOverrideDef();
 // getTaxRequest.TaxOverride.TaxOverrideType = "TaxDate";
@@ -149,6 +151,7 @@ line1.Description = "Red Size 7 Widget";
 line1.TaxCode = "NT";
 // Situational Request Parameters
 // line1.CustomerUsageType = "L";
+// line1.BusinessIdentificationNo = "234243";
 // line1.Discounted = true;
 // line1.TaxIncluded = true;
 // line1.TaxOverride = new TaxOverrideDef();
@@ -221,6 +224,7 @@ $getTaxRequest->setDetailLevel(DetailLevel::$Tax);
 $getTaxRequest->setCommit(FALSE);
 $getTaxRequest->setDocType(DocumentType::$SalesInvoice);
 // $getTaxRequest->setCustomerUsageType("G");
+// $getTaxRequest->setBusinessIdentificationNo("234243");
 // $getTaxRequest->setExemptionNo("12345");
 // $getTaxRequest->setDiscount(50);
 // $taxOverride = new TaxOverride();
@@ -271,6 +275,7 @@ $line1->setTaxCode("NT");
 // $line1->setCustomerUsageType("L");
 // $line1->setDiscounted(TRUE);
 // $line1->setTaxIncluded(TRUE);
+// $line1->setBusinessIdentificationNo("234243");
 // $lineTaxOverride = new TaxOverride();
 // $lineTaxOverride.TaxOverrideType("TaxDate");
 // $lineTaxOverride.Reason("Adjustment for return");
@@ -328,6 +333,7 @@ getTaxRequest.DocType = DocType.SalesInvoice;
 // Situational Request Parameters
 // getTaxRequest.CustomerUsageType = "G";
 // getTaxRequest.ExemptionNo = "12345";
+// getTaxRequest.BusinessIdentificationNo = "234243";
 // getTaxRequest.Discount = 50;
 // getTaxRequest.TaxOverride = new TaxOverrideDef();
 // getTaxRequest.TaxOverride.TaxOverrideType = "TaxDate";
@@ -373,6 +379,7 @@ line1.TaxCode = "NT";
 // line1.CustomerUsageType = "L";
 // line1.Discounted = true;
 // line1.TaxIncluded = true;
+// line1.BusinessIdentificationNo = "234243";
 // line1.TaxOverride = new TaxOverrideDef();
 // line1.TaxOverride.TaxOverrideType = "TaxDate";
 // line1.TaxOverride.Reason = "Adjustment for return";
@@ -428,206 +435,183 @@ WebResponse response = request.GetResponse();
 
 ```json
 {
-"ResultCode": "Success",
-"DocCode": "INV001",
-"DocDate": "2014-01-01",
-"Timestamp": "2014-03-20T00:19:55.887",
-"TotalAmount": "175",
-"TotalDiscount": "10",
-"TotalExemption": "165",
-"TotalTaxable": "0",
-"TotalTax": "0",
-"TotalTaxCalculated": "0",
-"TaxLines": [
-{
-"LineNo": "01",
-"TaxCode": "NT",
-"Taxability": "false",
-"BoundaryLevel": "Address",
-"Exemption": "0",
-"Discount": "10",
-"Taxable": "0",
-"Rate": "0.092500",
-"Tax": "0",
-"TaxCalculated": "0",
-"TaxDetails": [
-{
-"Country": "US",
-"Region": "IL",
-"JurisType": "State",
-"Taxable": "0",
-"Rate": "0.062500",
-"Tax": "0",
-"JurisName": "ILLINOIS",
-"TaxName": "IL STATE TAX"
-},
-{
-"Country": "US",
-"Region": "IL",
-"JurisType": "County",
-"Taxable": "0",
-"Rate": "0.007500",
-"Tax": "0",
-"JurisName": "COOK",
-"TaxName": "IL COUNTY TAX"
-},
-{
-"Country": "US",
-"Region": "IL",
-"JurisType": "City",
-"Taxable": "0",
-"Rate": "0.012500",
-"Tax": "0",
-"JurisName": "CHICAGO",
-"TaxName": "IL CITY TAX"
-},
-{
-"Country": "US",
-"Region": "IL",
-"JurisType": "Special",
-"Taxable": "0",
-"Rate": "0.010000",
-"Tax": "0",
-"JurisName": "REGIONAL TRANSPORT. 
-	AUTHORITY (RTA)",
-"TaxName": "IL SPECIAL TAX"
-}
-]
-},
-{
-"LineNo": "02",
-"TaxCode": "PC030147",
-"Taxability": "true",
-"BoundaryLevel": "Zip5",
-"Exemption": "150",
-"Discount": "0",
-"Taxable": "0",
-"Rate": "0.086000",
-"Tax": "0",
-"TaxCalculated": "0",
-"TaxDetails": [
-{
-"Country": "US",
-"Region": "WA",
-"JurisType": "State",
-"Taxable": "0",
-"Rate": "0.065000",
-"Tax": "0",
-"JurisName": "WASHINGTON",
-"TaxName": "WA STATE TAX"
-},
-{
-"Country": "US",
-"Region": "WA",
-"JurisType": "City",
-"Taxable": "0",
-"Rate": "0.021000",
-"Tax": "0",
-"JurisName": "BAINBRIDGE ISLAND",
-"TaxName": "WA CITY TAX"}
-]
-},
-{
-"LineNo": "02-FR",
-"TaxCode": "FR",
-"Taxability": "true",
-"BoundaryLevel": "Zip5",
-"Exemption": "15",
-"Discount": "0",
-"Taxable": "0",
-"Rate": "0.086000",
-"Tax": "0",
-"TaxCalculated": "0",
-"TaxDetails": [
-{
-"Country": "US",
-"Region": "WA",
-"JurisType": "State",
-"Taxable": "0",
-"Rate": "0.065000",
-"Tax": "0",
-"JurisName": "WASHINGTON",
-"TaxName": "WA STATE TAX"
-},
-{
-"Country": "US",
-"Region": "WA",
-"JurisType": "City",
-"Taxable": "0",
-"Rate": "0.021000",
-"Tax": "0",
-"JurisName": "BAINBRIDGE ISLAND",
-"TaxName": "WA CITY TAX"
-}
-]
-}
-],
-"TaxAddresses": [
-{
-"Address": "45 Fremont St",
-"AddressCode": "01",
-"City": "San Francisco",
-"Country": "US",
-"PostalCode": "94105-2204",
-"Region": "CA",
-"TaxRegionId": "2113460",
-"Latitude": "37.791119",
-"Longitude": "-122.397366"
-},
-{
-"Address": "45 Fremont St",
-"AddressCode": "01",
-"City": "San Francisco",
-"Country": "US",
-"PostalCode": "94105-2204",
-"Region": "CA",
-"TaxRegionId": "2113460",
-"Latitude": "37.791119",
-"Longitude": "-122.397366"
-},
-{
-"Address": "45 Fremont St",
-"AddressCode": "01",
-"City": "San Francisco",
-"Country": "US",
-"PostalCode": "94105-2204",
-"Region": "CA",
-"TaxRegionId": "2113460",
-"JurisCode": "0607500000",
-"Latitude": "37.791119",
-"Longitude": "-122.397366"
-},
-{
-"Address": "118 N Clark St Ste 100",
-"AddressCode": "02",
-"City": "Chicago",
-"Country": "US",
-"PostalCode": "60602-1304",
-"Region": "IL",
-"TaxRegionId": "2062953",
-"JurisCode": "1703114000",
-"Latitude": "41.884132",
-"Longitude": "-87.631048"
-},
-{
-"AddressCode": "03",
-"Country": "US",
-"Region": "WA",
-"TaxRegionId": "2109716",
-"Latitude": "47.627935",
-"Longitude": "-122.51702"
-},
-{
-"AddressCode": "03",
-"Country": "US",
-"Region": "WA",
-"TaxRegionId": "2109716",
-"JurisCode": "5303503736",
-"Latitude": "47.627935",
-"Longitude": "-122.51702"
-}
-],
-"TaxDate": "2013-07-01"
+    "DocCode": "INV001",
+    "DocDate": "2014-01-01",
+    "ResultCode": "Success",
+    "TaxAddresses": [
+        {
+            "Address": "118 N Clark St",
+            "AddressCode": "02",
+            "City": "Chicago",
+            "Country": "US",
+            "JurisCode": "1703114000",
+            "Latitude": "41.884132",
+            "Longitude": "-87.631048",
+            "PostalCode": "60602",
+            "Region": "IL",
+            "TaxRegionId": "2062953"
+        },
+        {
+            "Address": "45 Fremont Street",
+            "AddressCode": "01",
+            "City": "San Francisco",
+            "Country": "US",
+            "JurisCode": "0607500000",
+            "Latitude": "37.791119",
+            "Longitude": "-122.397366",
+            "Region": "CA",
+            "TaxRegionId": "2113460"
+        },
+        {
+            "AddressCode": "03",
+            "Country": "US",
+            "JurisCode": "5303503736",
+            "Latitude": "47.627935",
+            "Longitude": "-122.51702",
+            "Region": "WA",
+            "TaxRegionId": "2109716"
+        }
+    ],
+    "TaxDate": "2013-07-01",
+    "TaxLines": [
+        {
+            "BoundaryLevel": "Address",
+            "Discount": "10",
+            "Exemption": "0",
+            "LineNo": "01",
+            "Rate": "0.092500",
+            "Tax": "0",
+            "TaxCalculated": "0",
+            "TaxCode": "NT",
+            "TaxDetails": [
+                {
+                    "Country": "US",
+                    "JurisCode": "17",
+                    "JurisName": "ILLINOIS",
+                    "JurisType": "State",
+                    "Rate": "0.062500",
+                    "Region": "IL",
+                    "Tax": "0",
+                    "TaxName": "IL STATE TAX",
+                    "Taxable": "0"
+                },
+                {
+                    "Country": "US",
+                    "JurisCode": "031",
+                    "JurisName": "COOK",
+                    "JurisType": "County",
+                    "Rate": "0.007500",
+                    "Region": "IL",
+                    "Tax": "0",
+                    "TaxName": "IL COUNTY TAX",
+                    "Taxable": "0"
+                },
+                {
+                    "Country": "US",
+                    "JurisCode": "14000",
+                    "JurisName": "CHICAGO",
+                    "JurisType": "City",
+                    "Rate": "0.012500",
+                    "Region": "IL",
+                    "Tax": "0",
+                    "TaxName": "IL CITY TAX",
+                    "Taxable": "0"
+                },
+                {
+                    "Country": "US",
+                    "JurisCode": "AQOF",
+                    "JurisName": "REGIONAL TRANSPORT. AUTHORITY (RTA)",
+                    "JurisType": "Special",
+                    "Rate": "0.010000",
+                    "Region": "IL",
+                    "Tax": "0",
+                    "TaxName": "IL SPECIAL TAX",
+                    "Taxable": "0"
+                }
+            ],
+            "Taxability": "false",
+            "Taxable": "0"
+        },
+        {
+            "BoundaryLevel": "Zip5",
+            "Discount": "0",
+            "Exemption": "150",
+            "LineNo": "02",
+            "Rate": "0.086000",
+            "Tax": "0",
+            "TaxCalculated": "0",
+            "TaxCode": "PC030147",
+            "TaxDetails": [
+                {
+                    "Country": "US",
+                    "JurisCode": "53",
+                    "JurisName": "WASHINGTON",
+                    "JurisType": "State",
+                    "Rate": "0.065000",
+                    "Region": "WA",
+                    "Tax": "0",
+                    "TaxName": "WA STATE TAX",
+                    "Taxable": "0"
+                },
+                {
+                    "Country": "US",
+                    "JurisCode": "03736",
+                    "JurisName": "BAINBRIDGE ISLAND",
+                    "JurisType": "City",
+                    "Rate": "0.021000",
+                    "Region": "WA",
+                    "Tax": "0",
+                    "TaxName": "WA CITY TAX",
+                    "Taxable": "0"
+                }
+            ],
+            "Taxability": "true",
+            "Taxable": "0"
+        },
+        {
+            "BoundaryLevel": "Zip5",
+            "Discount": "0",
+            "Exemption": "15",
+            "LineNo": "02-FR",
+            "Rate": "0.086000",
+            "Tax": "0",
+            "TaxCalculated": "0",
+            "TaxCode": "FR",
+            "TaxDetails": [
+                {
+                    "Country": "US",
+                    "JurisCode": "53",
+                    "JurisName": "WASHINGTON",
+                    "JurisType": "State",
+                    "Rate": "0.065000",
+                    "Region": "WA",
+                    "Tax": "0",
+                    "TaxName": "WA STATE TAX",
+                    "Taxable": "0"
+                },
+                {
+                    "Country": "US",
+                    "JurisCode": "03736",
+                    "JurisName": "BAINBRIDGE ISLAND",
+                    "JurisType": "City",
+                    "Rate": "0.021000",
+                    "Region": "WA",
+                    "Tax": "0",
+                    "TaxName": "WA CITY TAX",
+                    "Taxable": "0"
+                }
+            ],
+            "Taxability": "true",
+            "Taxable": "0"
+        }
+    ],
+    "Timestamp": "2015-02-26T04:56:58.0496334Z",
+    "TotalAmount": "175",
+    "TotalDiscount": "10",
+    "TotalExemption": "165",
+    "TotalTax": "0",
+    "TotalTaxCalculated": "0",
+    "TotalTaxable": "0"
 }
 ```
 
@@ -840,6 +824,10 @@ Product taxability code of the line item. Can be an AvaTax system tax code, or a
 
 The client application customer or usage type. CustomerUsageType determines the exempt status of the transaction based on the exemption tax rules for the jurisdictions involved. Can also be referred to as Entity/Use Code.
 
+**BusinessIdentificationNo:** string [25], *optional, unless the user needs VAT calculated*
+
+The buyer's VAT id. Using this value will force VAT rules to be considered for the transaction. This may be set on the document or the line.
+
 **Description:** string [255], *optional*
 
 Item description. Required for customers using our filing service.
@@ -993,5 +981,138 @@ As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and
 
 #### TaxLine
 
+Tax calculation details for item lines. Information returned is dependent on the DetailLevel passed in the request.
+
+##### Properties
+
+**LineNo:** string [50]
+
+Line item identifier
+
+**TaxCode:** string [25]
+
+The tax code used in calculating tax
+
+**Taxability:** boolean
+
+Flag indicating item was taxable
+
+**Taxable:** decimal
+
+The amount that is taxable
+
+**Rate:** decimal
+
+Effective tax rate
+
+**Tax:** decimal
+
+Tax amount
+
+**Discount:** decimal
+
+Discount amount
+
+**TaxCalculated:** decimal
+
+Amount of tax calculated
+
+**Exemption:** decimal
+
+Exempt amount
+
+**BoundaryLevel:** string [7]
+
+The boundary level used to calculate tax: determined by the provided addresses
+
+**TaxDetails:** TaxDetail[]
+
+Collection of tax details
+
 #### TaxDetail
+
+Tax details by jurisdiction. Information returned is dependent on the DetailLevel passed in the request.
+
+##### Properties
+
+**Country:** string [2]
+
+Country of tax jurisdiction
+
+**JurisCode:** string [200]
+
+State assigned code identifying the jurisdiction. Note that this is not necessarily a unique identifier of the jurisdiction.
+
+**JurisName:** string [200]
+
+Name of tax jurisdiction
+
+**JurisType:** string [9]
+
+Regional type of tax jurisdiction
+
+**Rate:** decimal
+
+Effective tax rate for tax jurisdiction
+
+**Region:** string [3]
+
+Region of tax jurisdiction
+
+**Tax:** decimal
+
+Tax amount
+
+**Taxable:** decimal
+
+Taxable amount on the line
+
+**TaxName:** string [75]
+
+Tax name
+
 #### TaxAddress
+
+TaxAddress represents canonical addresses used in tax calculation.
+
+##### Properties
+
+**Address:** string [50]
+
+Canonical street address
+
+**AddressCode:** string
+
+Reference code uniquely identifying this address instance. AddressCode will always correspond to an address code supplied to in the address collection provided in the request.
+
+**City:** string [50]
+
+City name
+
+**Region:** string [3]
+
+State or region name
+
+**Country:** string
+
+Country code, as ISO 3166-1 (Alpha-2) country code (e.g. “US”)
+
+**PostalCode:** string
+
+Postal code
+
+**Latitude:** decimal
+
+Geographic latitude. Latitude is only defined if input address was a geographic point.
+
+**Longitude:** decimal
+
+Geographic longitude. Longitude is only defined if input address was a geographic point.
+
+**TaxRegionId:** string
+
+AvaTax tax region identifier
+
+**JurisCode:** string
+
+Tax jurisdiction code
