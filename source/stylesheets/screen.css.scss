@@ -518,6 +518,7 @@ html, body {
     border-radius: 4px;
     border: 1px solid #F7E633;
     text-shadow: 0px 0px 0 #666;
+    color: black;
     @include background(linear-gradient(bottom right, $search-gradient-start 0%, $search-gradient-end 100%));
   }
 }
