@@ -1,7 +1,11 @@
 ## GetTax
 
 ```shell
-curl "https://development.avalara.net/1.0/tax/get" --user 1234567890:A1B2C3D4E5F6G7H8 --header "Content-Type: text/json" --data @/Docs/getTaxRequest.json
+curl --user 1234567890:A1B2C3D4E5F6G7H8 \
+--header "Content-Type: text/json" \
+--data @/Docs/getTaxRequest.json \
+"https://development.avalara.net/1.0/tax/get" 
+
 {
 "CustomerCode": "ABC4335",
 "DocDate": "2014-01-01",

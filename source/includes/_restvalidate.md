@@ -3,7 +3,8 @@
 Normalizes a single US or Canadian address, providing a non-ambiguous address match.
 
 ```shell
-curl --user 1234567890:A1B2C3D4E5F6G7H8 "https://development.avalara.net/1.0/address/validate?Line1=118+N+Clark+St&Line2=Suite+100&Line3=ATTN+Accounts+Payable&City=Chicago&Region=IL&PostalCode=60602&Country=US"
+curl --user 1234567890:A1B2C3D4E5F6G7H8 \
+"https://development.avalara.net/1.0/address/validate?Line1=118+N+Clark+St&Line2=Suite+100&Line3=ATTN+Accounts+Payable&City=Chicago&Region=IL&PostalCode=60602&Country=US"
 ```
 
 ```csharp

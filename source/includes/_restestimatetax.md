@@ -4,7 +4,8 @@ Retrieves tax rate details for the supplied geographic coordinates and sale amou
 Since the REST API does not provide an explicit ping function, this method can also be used to test connectivity to the service.
 
 ```shell
-curl --user 1234567890:A1B2C3D4E5F6G7H8 "https://development.avalara.net/1.0/tax/47.627935,-122.51702/get?saleamount=10"
+curl --user 1234567890:A1B2C3D4E5F6G7H8 \
+"https://development.avalara.net/1.0/tax/47.627935,-122.51702/get?saleamount=10"
 ```
 
 ```java

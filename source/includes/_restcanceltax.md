@@ -1,7 +1,10 @@
 ## CancelTax
 
 ```shell
-curl "https://development.avalara.net/1.0/tax/cancel" --user 1234567890:A1B2C3D4E5F6G7H8 --header "Content-Type: text/json" --data @/Docs/cancelTaxRequest.json
+curl --user 1234567890:A1B2C3D4E5F6G7H8 \
+--header "Content-Type: text/json" \
+--data @/Docs/cancelTaxRequest.json \
+"https://development.avalara.net/1.0/tax/cancel"
 
 {
 "CompanyCode":"APITrialCompany",

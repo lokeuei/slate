@@ -1,7 +1,43 @@
 ## ValidateAddress
 
 ```shell
-TBD
+curl -X POST --header "Content-Type: text/xml" \
+--header "SOAPAction: \"http://avatax.avalara.com/services/Validate\"" \
+--data-binary @validateRequest.xml https://development.avalara.net/address/addresssvc.asmx
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://avatax.avalara.com/services">
+<SOAP-ENV:Header>
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+<wsse:UsernameToken>
+<wsse:Username>1234567890</wsse:Username>
+<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">A1B2C3D4E5F6G7H8</wsse:Password>
+</wsse:UsernameToken>
+</wsse:Security>
+<Profile xmlns="http://avatax.avalara.com/services" SOAP-ENV:actor="http://schemas.xmlsoap.org/soap/actor/next" SOAP-ENV:mustUnderstand="0">
+<Client>AvaTaxSample</Client>
+<Adapter>customAdapter</Adapter>
+<Name>Development</Name>
+</Profile>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<ns1:Validate>
+<ns1:ValidateRequest>
+<ns1:Address>
+<ns1:Line1>118 N Clark St</ns1:Line1>
+<ns1:Line2>Suite 100</ns1:Line2>
+<ns1:Line3>ATTN Accounts Payable</ns1:Line3>
+<ns1:City>Chicago</ns1:City>
+<ns1:Region>IL</ns1:Region>
+<ns1:PostalCode>60602</ns1:PostalCode>
+</ns1:Address>
+<ns1:Coordinates>true</ns1:Coordinates>
+<ns1:Taxability>true</ns1:Taxability>
+<ns1:TextCase>Upper</ns1:TextCase>
+</ns1:ValidateRequest>
+</ns1:Validate>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
 ```
 
 ```csharp

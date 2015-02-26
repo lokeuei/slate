@@ -1,7 +1,114 @@
 ## GetTax
 
 ```shell
-TBD
+curl -X POST --header "Content-Type: text/xml" \
+--header "SOAPAction: \"http://avatax.avalara.com/services/GetTax\"" \
+--data-binary @getTaxRequest.xml https://development.avalara.net/tax/taxsvc.asmx
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://avatax.avalara.com/services">
+<SOAP-ENV:Header>
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+<wsse:UsernameToken>
+<wsse:Username>1234567890</wsse:Username>
+<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">A1B2C3D4E5F6G7H8</wsse:Password>
+</wsse:UsernameToken>
+</wsse:Security>
+<Profile xmlns="http://avatax.avalara.com/services" SOAP-ENV:actor="http://schemas.xmlsoap.org/soap/actor/next" SOAP-ENV:mustUnderstand="0">
+<Client>AvaTaxSample</Client>
+<Adapter>customAdapter</Adapter>
+<Name>Development</Name>
+</Profile>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+<ns1:GetTax>
+<ns1:GetTaxRequest>
+<ns1:CompanyCode>APITrialCompany</ns1:CompanyCode>
+<ns1:DocType>SalesInvoice</ns1:DocType>
+<ns1:DocCode>INV001</ns1:DocCode>
+<ns1:DocDate>2014-01-01</ns1:DocDate>
+<ns1:CustomerCode>ABC4335</ns1:CustomerCode>
+<ns1:Discount>0</ns1:Discount>
+<ns1:OriginCode>0</ns1:OriginCode>
+<ns1:DestinationCode>1</ns1:DestinationCode>
+<ns1:Addresses>
+<ns1:BaseAddress>
+<ns1:AddressCode>0</ns1:AddressCode>
+<ns1:Line1>45 Fremont Street</ns1:Line1>
+<ns1:Line2/>
+<ns1:City>San Francisco</ns1:City>
+<ns1:Region>CA</ns1:Region>
+<ns1:PostalCode>94105-2204</ns1:PostalCode>
+<ns1:Country>US</ns1:Country>
+<ns1:TaxRegionId>0</ns1:TaxRegionId>
+</ns1:BaseAddress>
+<ns1:BaseAddress>
+<ns1:AddressCode>1</ns1:AddressCode>
+<ns1:Line1>118 N Clark St</ns1:Line1>
+<ns1:Line2>ATTN Accounts Payable</ns1:Line2>
+<ns1:City>Chicago</ns1:City>
+<ns1:Region>IL</ns1:Region>
+<ns1:PostalCode>60602-1304</ns1:PostalCode>
+<ns1:Country>US</ns1:Country>
+<ns1:TaxRegionId>0</ns1:TaxRegionId>
+</ns1:BaseAddress>
+<ns1:BaseAddress>
+<ns1:AddressCode>2</ns1:AddressCode>
+<ns1:Line1>100 Ravine Lane</ns1:Line1>
+<ns1:Line2/>
+<ns1:City>Bainbridge Island</ns1:City>
+<ns1:Region>WA</ns1:Region>
+<ns1:PostalCode>98110</ns1:PostalCode>
+<ns1:Country>US</ns1:Country>
+<ns1:TaxRegionId>0</ns1:TaxRegionId>
+</ns1:BaseAddress>
+</ns1:Addresses>
+<ns1:Lines>
+<ns1:Line>
+<ns1:No>1</ns1:No>
+<ns1:OriginCode>0</ns1:OriginCode>
+<ns1:DestinationCode>1</ns1:DestinationCode>
+<ns1:ItemCode>N543</ns1:ItemCode>
+<ns1:TaxCode>NT</ns1:TaxCode>
+<ns1:Qty>1</ns1:Qty>
+<ns1:Amount>10</ns1:Amount>
+<ns1:Discounted>false</ns1:Discounted>
+<ns1:Description>Red Size 7 Widget</ns1:Description>
+</ns1:Line>
+<ns1:Line>
+<ns1:No>2</ns1:No>
+<ns1:OriginCode>0</ns1:OriginCode>
+<ns1:DestinationCode>2</ns1:DestinationCode>
+<ns1:ItemCode>T345</ns1:ItemCode>
+<ns1:TaxCode>PC030147</ns1:TaxCode>
+<ns1:Qty>3</ns1:Qty>
+<ns1:Amount>150</ns1:Amount>
+<ns1:Discounted>false</ns1:Discounted>
+<ns1:Description>Size 10 Green Running Shoe</ns1:Description>
+</ns1:Line>
+<ns1:Line>
+<ns1:No>3</ns1:No>
+<ns1:OriginCode>0</ns1:OriginCode>
+<ns1:DestinationCode>2</ns1:DestinationCode>
+<ns1:ItemCode>FREIGHT</ns1:ItemCode>
+<ns1:TaxCode>FR</ns1:TaxCode>
+<ns1:Qty>1</ns1:Qty>
+<ns1:Amount>15</ns1:Amount>
+<ns1:Discounted>false</ns1:Discounted>
+<ns1:Description>Shipping Charge</ns1:Description>
+</ns1:Line>
+</ns1:Lines>
+<ns1:DetailLevel>Tax</ns1:DetailLevel>
+<ns1:HashCode>0</ns1:HashCode>
+<ns1:Commit>false</ns1:Commit>
+<ns1:ServiceMode>Automatic</ns1:ServiceMode>
+<ns1:PaymentDate>1900-01-01</ns1:PaymentDate>
+<ns1:ExchangeRate>1</ns1:ExchangeRate>
+<ns1:ExchangeRateEffDate>1900-01-01</ns1:ExchangeRateEffDate>
+</ns1:GetTaxRequest>
+</ns1:GetTax>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
 ```
 
 ```csharp
