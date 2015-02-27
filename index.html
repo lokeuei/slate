@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-<base target="_parent" />
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -40,7 +39,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://developer.avalara.com/getting-started'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://developer.avalara.com/getting-started' target="_parent">Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -48,13 +47,13 @@
       <div class="content">
         
           <h1 id='introduction'>Introduction</h1>
-<p>The Avalara AvaTax APIs allow you to connect your web cart or accounting software to realtime tax calculation and address validation services. You can just retrieve tax amounts, but your transactions can also be recorded for reporting and tax filing. We have a RESTful API, class wrappers (adapters) for PHP, Java, and .NET compiled from the SOAP API, or you can build your own wrappers directly from the <a href="https://development.avalara.net/address/addresssvc.wsdl">address</a> and <a href="https://development.avalara.net/tax/taxsvc.wsdl">tax service</a> SOAP WSDLs.</p>
+<p>The Avalara AvaTax APIs allow you to connect your web cart or accounting software to realtime tax calculation and address validation services. You can just retrieve tax amounts, but your transactions can also be recorded for reporting and tax filing. We have a RESTful API, class wrappers (adapters) for PHP, Java, and .NET compiled from the SOAP API, or you can build your own wrappers directly from the <a href='https://development.avalara.net/address/addresssvc.wsdl' target="_parent">address</a> and <a href='https://development.avalara.net/tax/taxsvc.wsdl' target="_parent">tax service</a> SOAP WSDLs.</p>
 
-<p>The Avalara AvaTax service is SOAP-based, so that API covers all AvaTax functionality. However, we understand the demand for a more RESTful interface, so we provide an API for that as well for the main functions of the AvaTax service. If you&rsquo;re unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href="http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest">here</a>.</p>
+<p>The Avalara AvaTax service is SOAP-based, so that API covers all AvaTax functionality. However, we understand the demand for a more RESTful interface, so we provide an API for that as well for the main functions of the AvaTax service. If you&rsquo;re unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href='http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest' target="_parent">here</a>.</p>
 
-<p>The sample code on this page is intended to give you an idea of how the methods are used, but you can find functioning sample source projects with full class libraries from our <a href='http://github.com/avadev'>API Sample Code page</a>.</p>
+<p>The sample code on this page is intended to give you an idea of how the methods are used, but you can find functioning sample source projects with full class libraries from our <a href='http://github.com/avadev' target="_parent">API Sample Code page</a>.</p>
 
-<p><aside> You will not be able to make web service calls until you have received an active account number and license key via email, or a username and password from the <a href='http://developer.avalara.com/getting-started'>get-started sandbox registration</a>. </aside></p>
+<p><strong>Note:</strong> You will not be able to make web service calls until you have received an active account number and license key via email, or a username and password from the <a href='http://developer.avalara.com/getting-started' target="_parent">get-started sandbox registration</a>.</p>
 
           <h1 id='rest-api'>REST API</h1>
 <p>The Avalara REST API exposes the most commonly used available for interacting with the AvaTax service, allowing calculation of tax, modification of documents, and validation of addresses.</p>
@@ -683,7 +682,7 @@
 <h3 id='headers'>Headers</h3>
 <p><strong>Authorization:</strong> header, <em>required</em></p>
 
-<p>In the format &ldquo;Basic[ account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.</p>
+<p>In the format &ldquo;Basic[ account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.</p>
 
 <p>Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=</p>
 
@@ -711,7 +710,7 @@
 
 <p><strong>CompanyCode:</strong> string [25], <em>optional</em></p>
 
-<p>The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the <a href="https://admin-development.avalara.net/" target="_blank">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.</p>
+<p>The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the <a href="https://admin-development.avalara.net/" target="_parent">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.</p>
 
 <p><strong>CustomerCode:</strong> string [50], <em>required</em></p>
 
@@ -1011,11 +1010,11 @@ This is for informational purposes. The TotalTax will still be used for reportin
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
-<p>Severity as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>Severity as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 <h4 id='taxline'>TaxLine</h4>
 <p>Tax calculation details for item lines. Information returned is dependent on the DetailLevel passed in the request.</p>
 <h5 id='properties'>Properties</h5>
@@ -1284,7 +1283,7 @@ This is for informational purposes. The TotalTax will still be used for reportin
 <h3 id='headers'>Headers</h3>
 <p><strong>Authorization:</strong> header, <em>required</em></p>
 
-<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.</p>
+<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.</p>
 
 <p>Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=</p>
 
@@ -1330,7 +1329,7 @@ This is for informational purposes. The TotalTax will still be used for reportin
 <li>AdjustmentCancelled</li>
 </ul>
 
-<p>For more information, see <a href="/api-docs/designing-your-integration/canceltax" target="_blank">Voiding Documents</a>.</p>
+<p>For more information, see <a href="http://developer.avalara.com/api-docs/designing-your-integration/canceltax" target="_parent">Voiding Documents</a>.</p>
 
 <p><strong>DocId:</strong> string, <em>optional</em></p>
 
@@ -1346,11 +1345,11 @@ This is for informational purposes. The TotalTax will still be used for reportin
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
-<p>SeverityLevel as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>SeverityLevel as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
           <h2 id='estimatetax'>EstimateTax</h2>
 <p>Retrieves tax rate details for the supplied geographic coordinates and sale amount.
@@ -1458,7 +1457,7 @@ Since the REST API does not provide an explicit ping function, this method can a
 <h3 id='headers'>Headers</h3>
 <p><strong>Authorization:</strong> header, <em>required</em></p>
 
-<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.</p>
+<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.</p>
 
 <p>Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=</p>
 
@@ -1500,11 +1499,11 @@ Since the REST API does not provide an explicit ping function, this method can a
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
-<p>SeverityLevel as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>SeverityLevel as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 <h3 id='taxdetail'>TaxDetail</h3>
 <p>Tax details by jurisdiction.</p>
 <h4 id='properties'>Properties</h4>
@@ -1658,7 +1657,7 @@ Since the REST API does not provide an explicit ping function, this method can a
 <h3 id='headers'>Headers</h3>
 <p><strong>Authorization:</strong> header, <em>required</em></p>
 
-<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.</p>
+<p>In the format &ldquo;Basic [account number]:[license key]&rdquo; encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.</p>
 
 <p>Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=</p>
 
@@ -1788,11 +1787,11 @@ Since the REST API does not provide an explicit ping function, this method can a
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
-<p>SeverityLevel as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>SeverityLevel as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
           <h2 id='errors'>Errors</h2>
 <blockquote>
@@ -1811,7 +1810,7 @@ Since the REST API does not provide an explicit ping function, this method can a
 </span><span class="p">}</span><span class="w">
 </span></pre>
 <h3 id='message'>Message</h3>
-<p>Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors">See Error Lists</a>.</p>
+<p>Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors" target="_parent">See Error Lists</a>.</p>
 <h3 id='properties'>Properties</h3>
 <p><em>Summary:</em> string [int MAX_VALUE]</p>
 
@@ -1842,7 +1841,7 @@ Since the REST API does not provide an explicit ping function, this method can a
 
           <h1 id='soap-api'>SOAP API</h1>
 <p>The Avalara SOAP API exposes all methods available for interacting with the AvaTax service, allowing calculation of tax, modification of documents, and validation of addresses - including some functionality not exposed by our REST API.
-If you&rsquo;re unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href="http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest">here</a>.</p>
+If you&rsquo;re unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href='http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest' target="_parent">here</a>.</p>
 <h2 id='url'>URL</h2>
 <p><strong>Development:</strong> https://development.avalara.net/</p>
 
@@ -2749,7 +2748,7 @@ This may be set on the document or the line.</p>
 <p><strong>CompanyCode:</strong> string [25], <em>required</em></p>
 
 <p>The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the 
-<a href="https://admin-development.avalara.net/" target="_blank">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.</p>
+<a href="https://admin-development.avalara.net/" target="_parent">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.</p>
 
 <p><strong>CurrencyCode:</strong> string [3], <em>optional</em></p>
 
@@ -3380,7 +3379,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p><strong>Note:</strong> PostTax can be used to Commit a document or even change the Document Code (invoice number).</p>
 
-<p>See <a href="/api-docs/designing-your-integration/posttax-and-committax">Committing Documents</a> for more details.</p>
+<p>See <a href="http://developer.avalara.com/api-docs/designing-your-integration/posttax-and-committax" target="_parent">Committing Documents</a> for more details.</p>
 <h3 id='posttax-request'>PostTax Request</h3>
 <p>Input for PostTax for posting or committing a previously saved document.</p>
 <h4 id='properties'>Properties</h4>
@@ -3420,7 +3419,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 <h4 id='properties'>Properties</h4>
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
@@ -3538,7 +3537,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 <span class="nt">&lt;/CommitTaxResult&gt;</span>
 </pre>
 
-<p>CommitTax is only necessary if you need to temporarily store your documents in the Avalara database in a Posted state and later commit the documents. This will require successive calls to GetTax, PostTax and CommitTax. See <a href="/api-docs/designing-your-integration/posttax-and-committax">Committing Documents</a> for more details.</p>
+<p>CommitTax is only necessary if you need to temporarily store your documents in the Avalara database in a Posted state and later commit the documents. This will require successive calls to GetTax, PostTax and CommitTax. See <a href="http://developer.avalara.com/api-docs/designing-your-integration/posttax-and-committax" target="_parent">Committing Documents</a> for more details.</p>
 <h3 id='committax-request'>CommitTax Request</h3>
 <p>Input for CommitTax indicating the document that should be committed. You may use just the DocId to locate and commit the document (5.8 adapter and earlier, or 14.2 and later), or you may use all three of CompanyCode, DocType and DocCode.</p>
 <h4 id='properties'>Properties</h4>
@@ -5253,7 +5252,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
@@ -5357,7 +5356,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 
 <p><strong>Messages:</strong> Message[]</p>
 
-<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a></p>
+<p>If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a></p>
 
 <p><strong>ResultCode:</strong> SeverityLevel</p>
 
@@ -5694,7 +5693,7 @@ Note: Any value set in this property will cause the document or line to be exemp
 <span class="nt">&lt;/Messages&gt;</span>
 </pre>
 <h3 id='message'>Message</h3>
-<p>Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors">See Error Lists</a>.</p>
+<p>Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors" target="_parent">See Error Lists</a>.</p>
 <h3 id='properties'>Properties</h3>
 <p><em>Summary:</em> string [int MAX_VALUE]</p>
 
@@ -5726,10 +5725,10 @@ Note: Any value set in this property will cause the document or line to be exemp
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="csharp">csharp</a>
-                <a href="#" data-language-name="java">java</a>
-                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="shell" target="_self">shell</a>
+                <a href="#" data-language-name="csharp" target="_self">csharp</a>
+                <a href="#" data-language-name="java" target="_self">java</a>
+                <a href="#" data-language-name="php" target="_self">php</a>
           </div>
       </div>
     </div>
