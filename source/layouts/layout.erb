@@ -16,7 +16,6 @@ under the License.
 <% language_tabs = current_page.data.language_tabs %>
 <!doctype html>
 <html>
-<base target="_parent" />
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -90,9 +89,9 @@ under the License.
           <div class="lang-selector">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                <a href="#" data-language-name="<%= lang.keys.first %>" target="_self"><%= lang.values.first %></a>
               <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <a href="#" data-language-name="<%= lang %>" target="_self"><%= lang %></a>
               <% end %>
             <% end %>
           </div>
