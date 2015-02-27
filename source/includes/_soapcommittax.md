@@ -108,7 +108,7 @@ CommitTaxResult commitTaxResult = taxSvc.commitTax(request);
 </CommitTaxResult>
 ```
 
-CommitTax is only necessary if you need to temporarily store your documents in the Avalara database in a Posted state and later commit the documents. This will require successive calls to GetTax, PostTax and CommitTax. See <a href="/api-docs/designing-your-integration/posttax-and-committax">Committing Documents</a> for more details.
+CommitTax is only necessary if you need to temporarily store your documents in the Avalara database in a Posted state and later commit the documents. This will require successive calls to GetTax, PostTax and CommitTax. See <a href="http://developer.avalara.com/api-docs/designing-your-integration/posttax-and-committax" target="_parent">Committing Documents</a> for more details.
 
 ### CommitTax Request
 

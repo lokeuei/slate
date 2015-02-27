@@ -17,7 +17,7 @@
 
 ###Message
 
-Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors">See Error Lists</a>.
+Generic format for error messages in output objects. Errors are returned in the Message class. <a href="http://developer.avalara.com/api-docs/designing-your-integration/errors-and-outages/common-errors" target="_parent">See Error Lists</a>.
 
 ###Properties
 

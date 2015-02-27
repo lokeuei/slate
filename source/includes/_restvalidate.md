@@ -132,7 +132,7 @@ Note that xml-encoded requests should use /1.0/address/validate.xml
 
 **Authorization:** header, *required*
 
-In the format "Basic [account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic [account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 
@@ -264,8 +264,8 @@ POSTNet is a 12-digit barcode containing the ZIP Code, ZIP+4 Code, and the deliv
 
 **ResultCode:** SeverityLevel
 
-SeverityLevel as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a>
+SeverityLevel as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a>
 
 **Messages:** Message[]
 
-As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a>
+As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a>

@@ -127,7 +127,7 @@ The PostTax method can be used to modify the state of a document saved to the Av
 
 **Note:** PostTax can be used to Commit a document or even change the Document Code (invoice number).
 
-See <a href="/api-docs/designing-your-integration/posttax-and-committax">Committing Documents</a> for more details.
+See <a href="http://developer.avalara.com/api-docs/designing-your-integration/posttax-and-committax" target="_parent">Committing Documents</a> for more details.
 
 ### PostTax Request
 
@@ -175,7 +175,7 @@ Result data returned from PostTax.
 
 **Messages:** Message[]
 
-If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a>
+If ResultCode is Success, Messages is null. Otherwise, it describes any warnings, errors, or exceptions encountered while processing the request. Properties defined in <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a>
 
 **ResultCode:** SeverityLevel
 

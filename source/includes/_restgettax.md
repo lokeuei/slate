@@ -635,7 +635,7 @@ Note that xml-encoded requests should use /1.0/tax/get.xml
 
 **Authorization:** header, *required*
 
-In the format "Basic[ account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>.
+In the format "Basic[ account number]:[license key]" encoded to <a href="http://en.wikipedia.org/wiki/Base64" target="_parent">Base64</a>, as per <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_parent">basic access authentication</a>.
 
 Sample: Basic a2VlcG1vdmluZzpub3RoaW5nMnNlZWhlcmU=
 
@@ -667,7 +667,7 @@ An identifier of software client generating the API call.
 
 **CompanyCode:** string [25], *optional*
 
-The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the <a href="https://admin-development.avalara.net/" target="_blank">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.
+The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the <a href="https://admin-development.avalara.net/" target="_parent">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.
 
 **CustomerCode:** string [50], *required*
 
@@ -973,11 +973,11 @@ Addresses used in tax calculations (returned for detail levels Line and Tax).
 
 **ResultCode:** SeverityLevel
 
-Severity as per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a>
+Severity as per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a>
 
 **Messages:** Message[]
 
-As per <a title="Common Response Format" href="/api-docs/soap/shared-formats-and-methods#CommonResponseFormat">Common Response Format</a>
+As per <a title="Common Response Format" href="http://developer.avalara.com/api-docs/soap/shared-formats-and-methods#CommonResponseFormat" target="_parent">Common Response Format</a>
 
 #### TaxLine
 

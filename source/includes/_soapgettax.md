@@ -829,7 +829,7 @@ Default is false. Setting this property to True will prevent any further documen
 **CompanyCode:** string [25], *required*
 
 The code that identifies the company in the AvaTax account in which the document should be posted. This code is declared during the company setup in the 
-<a href="https://admin-development.avalara.net/" target="_blank">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.
+<a href="https://admin-development.avalara.net/" target="_parent">AvaTax Admin Console</a>. If no value is passed, the document will be assigned to the default company.
 
 **CurrencyCode:** string [3], *optional*
 

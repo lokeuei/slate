@@ -1,7 +1,7 @@
 # SOAP API
 
 The Avalara SOAP API exposes all methods available for interacting with the AvaTax service, allowing calculation of tax, modification of documents, and validation of addresses - including some functionality not exposed by our REST API.
-If you're unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented [here](http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest).
+If you're unsure of which API to use, a full comparison of the differences between the functionality provided by our REST and SOAP interfaces is documented <a href='http://developer.avalara.com/api-docs/designing-your-integration/soap-or-rest' target="_parent">here</a>.
 
 
 ## URL
