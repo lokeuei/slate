@@ -1,33 +1,17 @@
 ---
-title: API Reference
+title: Excise Tax API Reference
 
 language_tabs:
   - shell
   - csharp
-  - java
-  - php
 
 toc_footers:
-  - <a href='http://developer.avalara.com/getting-started' target="_parent">Sign Up for a Developer Key</a>
+  - <a href='http://www.avalara.com/get-started/?profile=16970&title=AvaTax_Excise&type=products' target="_parent">Sign Up for Excise Tax</a>
 
 includes:
   - introduction
-  - restheaders
-  - restgettax
-  - restcanceltax
-  - restestimatetax
-  - restvalidate
-  - resterrors
   - soapheaders
   - soapgettax
-  - soapposttax
-  - soapcommittax
-  - soapcanceltax
-  - soapadjusttax
-  - soapgettaxhistory
-  - soapisauthorized
-  - soapping
-  - soapvalidate
   - soaperrors
 
 search: true
