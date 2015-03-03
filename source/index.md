@@ -2,7 +2,6 @@
 title: Excise Tax API Reference
 
 language_tabs:
-  - shell
   - csharp
 
 toc_footers:
@@ -11,9 +10,7 @@ toc_footers:
 includes:
   - introduction
   - authentication
-  - soapheaders
-  - soapgettax
-  - soaperrors
+  - authmethods
 
 search: true
 ---
